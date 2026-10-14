@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Escena 1 - Panorámica 360º (Foto)</title>
+    <meta name="description" content="PEC 3: Escena 1 con a-sky">
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Cámara y cursor -->
+        <a-camera>
+            <a-cursor color="#38bdf8"></a-cursor>
+        </a-camera>
+
+        <!-- Fondo 360 grados con a-sky -->
+        <a-sky color="#1e293b"></a-sky>
+
+        <!-- Elemento de muestra provisional -->
+        <a-box position="0 1.5 -3" rotation="0 45 0" color="#38bdf8"
+               animation="property: rotation; to: 0 405 0; loop: true; dur: 8000; easing: linear">
+        </a-box>
+        <a-text value="Escena 1: a-sky (En construccion)" align="center" position="0 2.5 -3" color="#ffffff"></a-text>
+    </a-scene>
+</body>
+</html>

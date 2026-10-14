@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Escena 2 - Vídeo 360º</title>
+    <meta name="description" content="PEC 3: Escena 2 con a-videosphere">
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Cámara y cursor -->
+        <a-camera>
+            <a-cursor color="#f43f5e"></a-cursor>
+        </a-camera>
+
+        <!-- Fondo esférico para vídeo 360º con a-videosphere -->
+        <a-videosphere color="#0f172a"></a-videosphere>
+
+        <!-- Elemento de muestra provisional -->
+        <a-sphere position="0 1.5 -3" radius="0.8" color="#f43f5e"
+                  animation="property: position; to: 0 1.8 -3; dir: alternate; loop: true; dur: 2000; easing: easeInOutSine">
+        </a-sphere>
+        <a-text value="Escena 2: a-videosphere (En construccion)" align="center" position="0 2.8 -3" color="#ffffff"></a-text>
+    </a-scene>
+</body>
+</html>

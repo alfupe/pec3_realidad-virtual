@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEC3_Fuentes_Alejandro</title>
+    <meta name="description" content="PEC 3: Tutorial de A-FRAME 360º. PEC3_Fuentes_Alejandro">
+    <link rel="stylesheet" href="recursos/styles.css">
 </head>
 <body>
-  <h1>Hello World!</h1>
+    <main class="page">
+        <header class="page__header">
+            <h1 class="page__title">PEC 3: Tutorial de A-FRAME 360º</h1>
+            <h2 class="page__subtitle">UOC - Realidad virtual (semestre 2627/1)</h2>
+            <p class="page__author">Alejandro Fuentes Pérez</p>
+        </header>
+
+        <!-- Selector de Escena -->
+        <nav class="page__nav" aria-label="Selector de escena de Realidad Virtual">
+            <button class="tab-btn is-active" id="btn-scene1" onclick="showScene(1)">Escena 1: Foto 360º (&lt;a-sky&gt;)</button>
+            <button class="tab-btn" id="btn-scene2" onclick="showScene(2)">Escena 2: Vídeo 360º (&lt;a-videosphere&gt;)</button>
+        </nav>
+
+        <!-- Visor de las Escenas (mediante iframe según punto 7 del tutorial) -->
+        <section class="page__viewer">
+            <div id="scene-wrapper-1" class="scene-container is-active">
+                <iframe id="iframe-scene1" class="scene-frame" src="recursos/escena1.html" title="Escena 1 - Panorámica 360º"></iframe>
+            </div>
+            <div id="scene-wrapper-2" class="scene-container">
+                <iframe id="iframe-scene2" class="scene-frame" src="recursos/escena2.html" title="Escena 2 - Vídeo 360º"></iframe>
+            </div>
+        </section>
+
+        <footer class="page__footer">
+            <p>Usa el ratón o arrastra para rotar la vista 360º. En móvil, orienta el dispositivo para explorar la escena.</p>
+            <p class="page__warning">Nota: los vídeos 360º requieren interacción de usuario para iniciar la reproducción debido a políticas del navegador.</p>
+        </footer>
+
+        <!-- Checklist de la práctica según enunciado -->
+        <section class="section-block">
+            <h2 class="section-block__title">Requisitos del proyecto (PEC3)</h2>
+            <ul class="checklist">
+                <li class="checklist__item">
+                    🔄 <strong>Escena 1 - Fondo panorámico 360º fijo (<code>&lt;a-sky&gt;</code>)</strong>
+                    <small class="checklist__note">Integración de imagen equirrectangular 360º con elementos interactivos y animados.</small>
+                </li>
+                <li class="checklist__item">
+                    🔄 <strong>Escena 2 - Fondo panorámico 360º en vídeo (<code>&lt;a-videosphere&gt;</code>)</strong>
+                    <small class="checklist__note">Integración de clip de vídeo equirrectangular optimizado en formato MP4 con control de reproducción.</small>
+                </li>
+                <li class="checklist__item">
+                    ✅ <strong>Estructura de entrega y carpetas</strong>
+                    <small class="checklist__note">Página raíz <code>index.html</code> y subcarpeta <code>recursos/</code> para el resto de archivos y assets.</small>
+                </li>
+                <li class="checklist__item">
+                    ✅ <strong>Incrustación en documento HTML</strong>
+                    <small class="checklist__note">Uso de <code>&lt;iframe&gt;</code> conforme al paso 7 del tutorial para integrar ambas escenas en una interfaz web.</small>
+                </li>
+                <li class="checklist__item">
+                    ✅ <strong>Límite de tamaño (&lt; 10 MB)</strong>
+                    <small class="checklist__note">Optimización exhaustiva de medios 360º para asegurar un empaquetado inferior a 10 MB.</small>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Créditos y Atribuciones -->
+        <section class="section-block">
+            <h2 class="section-block__title">Créditos y licencias</h2>
+            <ul class="credits-list">
+                <li>(En construcción: se documentarán aquí los recursos panorámicos, modelos y audios seleccionados).</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        function showScene(sceneNumber) {
+            const wrapper1 = document.getElementById('scene-wrapper-1');
+            const wrapper2 = document.getElementById('scene-wrapper-2');
+            const btn1 = document.getElementById('btn-scene1');
+            const btn2 = document.getElementById('btn-scene2');
+
+            if (sceneNumber === 1) {
+                wrapper1.classList.add('is-active');
+                wrapper2.classList.remove('is-active');
+                btn1.classList.add('is-active');
+                btn2.classList.remove('is-active');
+            } else {
+                wrapper1.classList.remove('is-active');
+                wrapper2.classList.add('is-active');
+                btn1.classList.remove('is-active');
+                btn2.classList.add('is-active');
+            }
+        }
+    </script>
 </body>
 </html>
