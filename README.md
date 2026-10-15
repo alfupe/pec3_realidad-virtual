@@ -1,4 +1,4 @@
-# PEC 3: Tutorial de A-FRAME 360º - Inmersión Submarina
+# PEC 3: Tutorial de A-FRAME 360º
 
 **Asignatura:** Realidad virtual (Semestre 2627/1)  
 **Estudiante:** Alejandro Fuentes Pérez (`alfupe@uoc.edu`)  
@@ -6,67 +6,51 @@
 
 ---
 
-## 📌 Descripción del Proyecto
+## Descripción del Proyecto
 
-Este proyecto interactivo de Realidad Virtual WebXR recrea una **experiencia inmersiva submarina en 360º**, diseñada y optimizada para cumplir con los criterios de máxima calificación (Excelente) de la Rúbrica R3 de la PEC3:
+Práctica correspondiente a la PEC3 de Realidad Virtual. Consiste en la creación de dos escenas inmersivas en 360º utilizando A-Frame:
 
-1. **Escena 1 (Fondo fijo 360º con `<a-sky>`):**
-   * Panorámica submarina equirrectangular de alta resolución (4096×2048 px) de un arrecife de coral.
-   * **Interactividad y originalidad:** Puntos de interés (hotspots 3D) con señalización luminosa y animada. Al apuntar la mirada o el cursor (`mouseenter`), se despliegan paneles informativos interactivos sobre la biodiversidad del arrecife.
-   * **Fauna marina 3D animada:** Peces geométricos estilizados nadando en órbitas concéntricas alrededor del usuario con aletas articuladas en movimiento.
-   * **Efectos ambientales:** Columnas volumétricas de burbujas ascendentes.
+1. **Escena 1 (Foto 360º):** Utiliza la etiqueta `<a-sky>` con una imagen panorámica equirrectangular de un arrecife de coral. Se incorporan objetos geométricos primitivos (`<a-box>`, `<a-sphere>`), texto 3D y animaciones tanto continuas como disparadas mediante la interacción del cursor con el evento `mouseenter`.
+2. **Escena 2 (Vídeo 360º):** Utiliza la etiqueta `<a-videosphere>` con un clip de vídeo submarino en formato MP4 compatible. Incluye control de reproducción/pausa y un objeto 3D con animación dentro de la escena.
 
-2. **Escena 2 (Fondo de vídeo 360º con `<a-videosphere>`):**
-   * Vídeo subacuático 360º en formato nativo **MP4 (H.264)**, garantizando compatibilidad universal con navegadores modernos de escritorio, móviles y visores VR.
-   * **Interactividad y originalidad:** Consola HUD 3D de buceo flotante en el espacio virtual tridimensional con telemetría de inmersión y botones interactivos para alternar **Reproducir / Pausar** y activar/desactivar el sonido sin restricciones de políticas de autoplay del navegador.
-
-3. **Incrustación en documento HTML principal:**
-   * Ambas escenas están incrustadas y coordinadas en [`index.html`](index.html) a través de elementos `<iframe>` con pestañas de navegación directa, cumpliendo el apartado 7 del tutorial de A-Frame.
+Ambas escenas están incrustadas en el archivo principal `index.html` mediante etiquetas `<iframe>` siguiendo las instrucciones del paso 7 del tutorial de la asignatura.
 
 ---
 
-## 🌐 Acceso al Proyecto en GitHub Pages
+## Acceso al Proyecto en GitHub Pages
 
-El proyecto se encuentra publicado y accesible públicamente a través de GitHub Pages:
+El proyecto se puede visualizar en GitHub Pages en la siguiente dirección:
 
-🔗 **[https://alfupe.github.io/pec3_realidad-virtual/](https://alfupe.github.io/pec3_realidad-virtual/)**
+[https://alfupe.github.io/pec3_realidad-virtual/](https://alfupe.github.io/pec3_realidad-virtual/)
 
-### 📱 Código QR de acceso directo
-
-Apunta con la cámara de tu smartphone o tu visor VR para abrir directamente la experiencia:
+### Código QR de acceso
 
 <p align="center">
-  <img src="recursos/qr-github-pages.png" alt="Código QR GitHub Pages PEC3" width="220">
-  <br>
-  <em>Escanea para acceder directamente a la experiencia WebVR</em>
+  <img src="recursos/qr-github-pages.png" alt="Código QR GitHub Pages" width="200">
 </p>
 
 ---
 
-## 📁 Estructura del Repositorio y Entrega
-
-El proyecto sigue estrictamente las especificaciones de entrega de la UOC:
+## Estructura de archivos
 
 ```text
 pec3_realidad-virtual/
-├── index.html              # Documento HTML raíz con visor de escenas, checklist y créditos
-├── recursos/               # Subcarpeta con todos los recursos y escenas de la práctica
-│   ├── arrecife360.jpg     # Fotografía panorámica 360º equirrectangular (1.6 MB)
-│   ├── escena1.html        # Escena 1 interactiva con <a-sky>, hotspots y fauna animada
-│   ├── escena2.html        # Escena 2 interactiva con <a-videosphere> y consola HUD 3D
-│   ├── qr-github-pages.png # Código QR para acceso rápido desde dispositivos móviles/VR
-│   ├── styles.css          # Hoja de estilos CSS del visor y la interfaz
-│   └── video360.mp4        # Clip de vídeo 360º equirrectangular en MP4 H.264 (3.7 MB)
-├── .gitignore              # Filtro para archivos de sistema (macOS .DS_Store), IDEs y zips
-└── README.md               # Documentación completa del proyecto
+├── index.html              # Documento principal con selector de escenas e iframes
+├── recursos/               # Carpeta de recursos del proyecto
+│   ├── arrecife360.jpg     # Imagen panorámica equirrectangular 360º
+│   ├── escena1.html        # Escena 1 (<a-sky>)
+│   ├── escena2.html        # Escena 2 (<a-videosphere>)
+│   ├── qr-github-pages.png # Código QR para acceso móvil
+│   ├── styles.css          # Hoja de estilos del visor
+│   └── video360.mp4        # Vídeo submarino 360º en formato MP4
+├── .gitignore
+└── README.md
 ```
-
-* **Control de peso:** El conjunto total de recursos del proyecto ocupa tan solo **~5.4 MB**, cumpliendo holgadamente el límite de **10 MB** estipulado para la entrega comprimida.
 
 ---
 
-## 📚 Propiedad Intelectual y Licencias
+## Créditos y recursos utilizados
 
-* **Imagen 360º Arrecife (Escena 1):** *"Heron Bommie SVII"* capturada con cámara subacuática Seaview SVII por © Underwater Earth / XL Catlin Seaview Survey / Christophe Bailhache. Licencia [Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)](https://creativecommons.org/licenses/by-sa/3.0/). Fuente: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Heron_Bommie_SVII.jpg).
-* **Vídeo 360º Inmersión (Escena 2):** *"Fiesa underwater 360 video vr #insta360x4"* grabado con cámara Insta360 X4 por Snicel 69. Licencia [Creative Commons Attribution 3.0 (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/). Fuente: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Fiesa_underwater_360_video_vr_-insta360x4.webm).
-* **Framework WebXR:** [A-Frame v1.8.0](https://aframe.io/) (Licencia MIT, Supermedium & Mozilla).
+* **Imagen panorámica 360º (Escena 1):** [Heron Bommie SVII](https://commons.wikimedia.org/wiki/File:Heron_Bommie_SVII.jpg) por © Underwater Earth / XL Catlin Seaview Survey / Christophe Bailhache, bajo licencia [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+* **Vídeo 360º (Escena 2):** [Fiesa underwater 360 video vr](https://commons.wikimedia.org/wiki/File:Fiesa_underwater_360_video_vr_-insta360x4.webm) por Snicel 69, bajo licencia [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+* **Librería WebVR:** [A-Frame 1.8.0](https://aframe.io/).

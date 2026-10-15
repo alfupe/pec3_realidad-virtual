@@ -1,155 +1,141 @@
 body {
     margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #0f172a;
-    color: #f1f5f9;
+    padding: 2rem 1rem;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #222;
+    background-color: #f4f4f4;
 }
 
 .page {
-    max-width: 960px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
 }
 
 .page__header {
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 .page__title {
-    margin: 0 0 0.5rem;
-    font-size: 2rem;
-    color: #38bdf8;
+    margin: 0 0 0.25rem;
+    font-size: 1.75rem;
 }
 
 .page__subtitle {
-    margin: 0 0 0.25rem;
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: #94a3b8;
+    margin: 0;
+    color: #555;
 }
 
 .page__author {
-    margin: 0;
-    font-size: 1rem;
-    color: #cbd5e1;
+    color: #555;
+    margin: 0.5rem 0 1.5rem;
 }
 
-.page__nav {
+/* Selector de escena sencillo */
+.scene-selector {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 10px;
+    margin-bottom: 1rem;
 }
 
-.tab-btn {
-    background: #1e293b;
-    color: #94a3b8;
-    border: 1px solid #334155;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+.scene-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
 }
 
-.tab-btn:hover {
-    background: #334155;
-    color: #f8fafc;
+.scene-btn:hover {
+    background-color: #eee;
 }
 
-.tab-btn.is-active {
-    background: #0284c7;
-    color: #ffffff;
-    border-color: #38bdf8;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+.scene-btn.active {
+    background-color: #2b6cb0;
+    color: #fff;
+    border-color: #2b6cb0;
 }
 
 .page__viewer {
-    background: #020617;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 1.5rem;
+    position: relative;
+    height: 450px;
+    background-color: #000;
 }
 
 .scene-container {
     display: none;
-    position: relative;
-    width: 100%;
-    height: 520px;
-}
-
-.scene-container.is-active {
-    display: block;
-}
-
-.scene-frame {
     width: 100%;
     height: 100%;
-    border: none;
+}
+
+.scene-container.active {
     display: block;
+}
+
+.page__frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .page__footer {
     text-align: center;
-    color: #94a3b8;
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
+    color: #555;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 .page__warning {
-    color: #fbbf24;
+    max-width: 640px;
+    margin: 0.75rem auto 0;
+    padding: 0.6rem 0.9rem;
+    background-color: #fff4d6;
+    border: 1px solid #e0b64a;
+    border-radius: 4px;
+    color: #6b4e00;
     font-size: 0.85rem;
-    margin-top: 0.25rem;
 }
 
-.section-block {
-    background: #1e293b;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #334155;
+.credits,
+.instructions {
+    margin-top: 1.75rem;
+    padding: 1rem 1.25rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 
-.section-block__title {
-    margin: 0 0 1rem;
+.credits__title,
+.instructions__title {
+    margin: 0 0 0.75rem;
     font-size: 1.25rem;
-    color: #38bdf8;
 }
 
-.checklist {
-    list-style: none;
-    padding: 0;
+.credits__list,
+.instructions__list {
     margin: 0;
+    padding-left: 1.25rem;
 }
 
-.checklist__item {
+.credits__item,
+.instructions__item {
     margin-bottom: 0.75rem;
     line-height: 1.5;
 }
 
-.checklist__note {
+.credits__item:last-child,
+.instructions__item:last-child {
+    margin-bottom: 0;
+}
+
+.credits__link {
+    color: #0b57d0;
+}
+
+.instructions__note {
     display: block;
-    color: #94a3b8;
-    margin-top: 0.2rem;
-    margin-left: 1.5rem;
-}
-
-.credits-list {
-    margin: 0;
-    padding-left: 1.25rem;
-    color: #cbd5e1;
-}
-
-.credits-list li {
-    margin-bottom: 0.5rem;
-}
-
-.credits-list a {
-    color: #38bdf8;
-    text-decoration: underline;
+    margin-top: 0.25rem;
+    color: #555;
+    font-size: 0.85rem;
 }
