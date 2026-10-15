@@ -99,7 +99,8 @@ body {
 }
 
 .credits,
-.instructions {
+.instructions,
+.ai-declaration {
     margin-top: 1.75rem;
     padding: 1rem 1.25rem;
     background-color: #fff;
@@ -107,26 +108,52 @@ body {
 }
 
 .credits__title,
-.instructions__title {
+.instructions__title,
+.ai-declaration__title {
     margin: 0 0 0.75rem;
     font-size: 1.25rem;
 }
 
+.ai-declaration__subtitle {
+    margin: 1rem 0 0.35rem;
+    font-size: 0.95rem;
+    color: #222;
+}
+
 .credits__list,
-.instructions__list {
+.instructions__list,
+.ai-declaration__list {
     margin: 0;
     padding-left: 1.25rem;
 }
 
 .credits__item,
-.instructions__item {
+.instructions__item,
+.ai-declaration__item {
     margin-bottom: 0.75rem;
     line-height: 1.5;
 }
 
 .credits__item:last-child,
-.instructions__item:last-child {
+.instructions__item:last-child,
+.ai-declaration__item:last-child {
     margin-bottom: 0;
+}
+
+.ai-declaration p {
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.ai-declaration blockquote {
+    margin: 0.4rem 0 0.8rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #f9f9f9;
+    border-left: 3px solid #2b6cb0;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: #444;
 }
 
 .credits__link {

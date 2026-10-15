@@ -58,3 +58,34 @@ pec3_realidad-virtual/
 * **Vídeo 360º (Escena 2):** [Fiesa underwater 360 video vr](https://commons.wikimedia.org/wiki/File:Fiesa_underwater_360_video_vr_-insta360x4.webm) por Snicel 69, bajo licencia [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 * **Modelo 3D (Escena 2):** ["Stylized Rare Stingray | Game Ready Model"](https://skfb.ly/pMEuE) por SammyCAnimations, bajo licencia [Creative Commons Attribution (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/).
 * **Librería WebVR:** [A-Frame 1.8.0](https://aframe.io/).
+
+---
+
+## Declaración de uso de Inteligencia Artificial (IA)
+
+Siguiendo las directrices institucionales de la UOC sobre el uso ético, crítico y responsable de las herramientas de Inteligencia Artificial en las actividades de evaluación, se detalla a continuación el alcance de su empleo en la realización de esta práctica:
+
+### Herramienta utilizada
+Asistente de Inteligencia Artificial (Gemini / Antigravity).
+
+### Objetivos perseguidos
+* Redacción formal y normalización de los textos de créditos, atribuciones de autoría y licencias Creative Commons (CC BY-SA 3.0, CC BY 3.0 y CC BY 4.0) de los recursos multimedia y modelos 3D externos.
+* Estructuración jerárquica y redacción técnica de la documentación del proyecto (`README.md`) para el repositorio.
+* Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.
+* Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).
+
+### Instrucciones o prompts representativos
+> «A partir de estos enlaces de Wikimedia y Sketchfab con licencias CC BY-SA 3.0 y CC BY 4.0, redacta el bloque de créditos formal para index.html y README.md siguiendo las buenas prácticas de atribución académica.»
+
+> «Genera un código QR ligero en PNG que enlace a https://alfupe.github.io/pec3_realidad-virtual/ para integrarlo en la interfaz.»
+
+> «Ayúdame a calcular la velocidad y rotación de un modelo 3D en A-Frame para que patrulle entre -1.7 y 1.7 en X y gire fluidamente 180º al llegar a los extremos sin saltos bruscos.»
+
+> «Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»
+
+### Respuestas obtenidas
+La herramienta proporcionó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con los cálculos de coordenadas y escuchadores de eventos (`mouseenter`, `mouseleave`) para la interacción en A-Frame.
+
+### Proceso de revisión, reelaboración y edición
+El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la búsqueda y selección de recursos gráficos según las directrices de la PEC, la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (< 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.
+
