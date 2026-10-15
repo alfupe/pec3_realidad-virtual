@@ -51,16 +51,15 @@
         <a-light type="directional" position="1 4 -2" intensity="0.6"></a-light>
 
         <!-- Modelo 3D externo: Mantarraya planeando en la corriente submarina -->
-        <!-- Incluye suave animación de planeo/balanceo e interacción de escala al mirarla con el cursor -->
-        <a-entity id="mantarraya-submarina"
-                  gltf-model="#modeloManta"
-                  position="0 0.4 -3.2"
-                  rotation="0 85 0"
-                  scale="0.8 0.8 0.8"
-                  animation="property: position; dir: alternate; dur: 3200; loop: true; easing: easeInOutSine; to: 0 0.8 -3.2"
-                  animation__ondular="property: rotation; dir: alternate; dur: 4000; loop: true; easing: easeInOutSine; from: -5 70 -5; to: 5 100 5"
-                  animation__hover="property: scale; startEvents: mouseenter; dur: 300; to: 1.1 1.1 1.1"
-                  animation__leave="property: scale; startEvents: mouseleave; dur: 400; to: 0.8 0.8 0.8">
+        <!-- Al mirarla con el cursor (mouseenter), se asusta y se aleja hacia las profundidades (eje Z) -->
+        <a-entity id="contenedor-manta" position="0 0 -3.2">
+            <a-entity id="mantarraya-submarina"
+                      gltf-model="#modeloManta"
+                      rotation="0 85 0"
+                      scale="0.8 0.8 0.8"
+                      animation__flotar="property: position; dir: alternate; dur: 3200; loop: true; easing: easeInOutSine; from: 0 0.4 0; to: 0 0.8 0"
+                      animation__ondular="property: rotation; dir: alternate; dur: 4000; loop: true; easing: easeInOutSine; from: -5 70 -5; to: 5 100 5">
+            </a-entity>
         </a-entity>
 
         <!-- Cámara con cursor para interactuar con los objetos de la escena -->
@@ -70,6 +69,7 @@
     </a-scene>
 
     <script>
+        // Control de reproducción y pausa del vídeo 360
         var video = document.getElementById('videoSubmarino');
         var btn = document.getElementById('btnControl');
 
@@ -81,6 +81,30 @@
                 video.pause();
                 btn.textContent = 'Reproducir vídeo';
             }
+        });
+
+        // Interacción: al pasar el cursor (mouseenter), la mantarraya se asusta y se aleja en el eje Z
+        var contenedorManta = document.getElementById('contenedor-manta');
+        var manta = document.getElementById('mantarraya-submarina');
+
+        manta.addEventListener('mouseenter', function () {
+            contenedorManta.setAttribute('animation__huida', {
+                property: 'position',
+                to: '0 0.3 -6.0',
+                dur: 1000,
+                easing: 'easeOutQuad'
+            });
+        });
+
+        manta.addEventListener('mouseleave', function () {
+            setTimeout(function () {
+                contenedorManta.setAttribute('animation__huida', {
+                    property: 'position',
+                    to: '0 0 -3.2',
+                    dur: 1800,
+                    easing: 'easeInOutQuad'
+                });
+            }, 600);
         });
     </script>
 </body>
