@@ -14,6 +14,9 @@ Icon
 *.swo
 *~
 
+# Reference repository
+Tutorial_A-Frame_360-master/
+
 # Zip / Delivery files (no trackear entregas comprimidas dentro del repo)
 *.zip
 *.tar.gz
