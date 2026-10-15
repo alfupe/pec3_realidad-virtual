@@ -30,7 +30,7 @@
     <button id="btnControl">Reproducir / Pausar</button>
 
     <a-scene>
-        <!-- Declaración del vídeo en assets -->
+        <!-- Declaración de recursos en assets -->
         <a-assets>
             <video id="videoSubmarino"
                    src="video360.mp4"
@@ -39,13 +39,34 @@
                    playsinline
                    webkit-playsinline>
             </video>
+            <!-- Modelo 3D de mantarraya importado para enriquecer la Escena 2 -->
+            <a-asset-item id="modeloManta" src="mantaraya.glb"></a-asset-item>
         </a-assets>
 
         <!-- Fondo esférico para el vídeo 360 -->
         <a-videosphere src="#videoSubmarino" rotation="0 -90 0"></a-videosphere>
 
-        <!-- Cámara -->
-        <a-camera></a-camera>
+        <!-- Luces ambientales y direccionales para el modelo 3D -->
+        <a-light type="ambient" color="#ffffff" intensity="0.9"></a-light>
+        <a-light type="directional" position="1 4 -2" intensity="0.6"></a-light>
+
+        <!-- Modelo 3D externo: Mantarraya planeando en la corriente submarina -->
+        <!-- Incluye suave animación de planeo/balanceo e interacción de escala al mirarla con el cursor -->
+        <a-entity id="mantarraya-submarina"
+                  gltf-model="#modeloManta"
+                  position="0 0.4 -3.2"
+                  rotation="0 85 0"
+                  scale="0.8 0.8 0.8"
+                  animation="property: position; dir: alternate; dur: 3200; loop: true; easing: easeInOutSine; to: 0 0.8 -3.2"
+                  animation__ondular="property: rotation; dir: alternate; dur: 4000; loop: true; easing: easeInOutSine; from: -5 70 -5; to: 5 100 5"
+                  animation__hover="property: scale; startEvents: mouseenter; dur: 300; to: 1.1 1.1 1.1"
+                  animation__leave="property: scale; startEvents: mouseleave; dur: 400; to: 0.8 0.8 0.8">
+        </a-entity>
+
+        <!-- Cámara con cursor para interactuar con los objetos de la escena -->
+        <a-camera>
+            <a-cursor color="#ffffff"></a-cursor>
+        </a-camera>
     </a-scene>
 
     <script>
