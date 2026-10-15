@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PEC3_Fuentes_Alejandro</title>
     <meta name="description" content="PEC 3: Tutorial de A-FRAME 360º. PEC3_Fuentes_Alejandro">
-    <link rel="stylesheet" href="recursos/styles.css">
+    <link rel="stylesheet" href="recursos/styles.css?v=2">
 </head>
 <body>
     <main class="page">
@@ -101,32 +101,41 @@
             </ul>
         </section>
 
-        <section class="ai-declaration">
-            <h2 class="ai-declaration__title">Declaración de uso de Inteligencia Artificial (IA)</h2>
-            <p>Siguiendo las directrices institucionales de la UOC sobre el uso ético, crítico y responsable de las herramientas de Inteligencia Artificial en las actividades de evaluación, se detalla a continuación el alcance de su empleo en la realización de esta práctica:</p>
+        <section class="instructions">
+            <h2 class="instructions__title">Declaración de uso de Inteligencia Artificial (IA)</h2>
+            <p style="margin: 0 0 0.75rem; line-height: 1.5; font-size: 0.95rem;">Siguiendo las directrices institucionales de la UOC sobre el uso ético, crítico y responsable de las herramientas de Inteligencia Artificial en las actividades de evaluación, se detalla a continuación el alcance de su empleo en la realización de esta práctica:</p>
 
-            <h3 class="ai-declaration__subtitle">Herramienta utilizada</h3>
-            <p>Asistente de Inteligencia Artificial (Gemini / Antigravity).</p>
-
-            <h3 class="ai-declaration__subtitle">Objetivos perseguidos</h3>
-            <ul class="ai-declaration__list">
-                <li class="ai-declaration__item">Redacción formal y normalización de los textos de créditos, atribuciones de autoría y licencias Creative Commons (CC BY-SA 3.0, CC BY 3.0 y CC BY 4.0) de los recursos multimedia y modelos 3D externos.</li>
-                <li class="ai-declaration__item">Estructuración jerárquica y redacción técnica de la documentación del proyecto (<code>README.md</code>) para el repositorio.</li>
-                <li class="ai-declaration__item">Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.</li>
-                <li class="ai-declaration__item">Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).</li>
+            <ul class="instructions__list">
+                <li class="instructions__item">
+                    <strong>Herramienta utilizada:</strong> Asistente de Inteligencia Artificial (Gemini / Antigravity).
+                </li>
+                <li class="instructions__item">
+                    <strong>Objetivos perseguidos:</strong>
+                    <ul style="margin-top: 0.35rem; padding-left: 1.25rem;">
+                        <li>Redacción formal y normalización de los textos de créditos, atribuciones de autoría y licencias Creative Commons (CC BY-SA 3.0, CC BY 3.0 y CC BY 4.0) de los recursos multimedia y modelos 3D externos.</li>
+                        <li>Estructuración jerárquica y redacción técnica de la documentación del proyecto (<code>README.md</code>) para el repositorio.</li>
+                        <li>Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.</li>
+                        <li>Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).</li>
+                    </ul>
+                </li>
+                <li class="instructions__item">
+                    <strong>Instrucciones o prompts representativos:</strong>
+                    <div style="margin-top: 0.4rem; display: flex; flex-direction: column; gap: 0.35rem;">
+                        <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«A partir de estos enlaces de Wikimedia y Sketchfab con licencias CC BY-SA 3.0 y CC BY 4.0, redacta el bloque de créditos formal para index.html y README.md siguiendo las buenas prácticas de atribución académica.»</span>
+                        <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Genera un código QR ligero en PNG que enlace a https://alfupe.github.io/pec3_realidad-virtual/ para integrarlo en la interfaz.»</span>
+                        <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Ayúdame a calcular la velocidad y rotación de un modelo 3D en A-Frame para que patrulle entre -1.7 y 1.7 en X y gire fluidamente 180º al llegar a los extremos sin saltos bruscos.»</span>
+                        <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»</span>
+                    </div>
+                </li>
+                <li class="instructions__item">
+                    <strong>Respuestas obtenidas:</strong>
+                    <span class="instructions__note">La herramienta proporcionó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con los cálculos de coordenadas y escuchadores de eventos (<code>mouseenter</code>, <code>mouseleave</code>) para la interacción en A-Frame.</span>
+                </li>
+                <li class="instructions__item">
+                    <strong>Proceso de revisión, reelaboración y edición:</strong>
+                    <span class="instructions__note">El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la búsqueda y selección de recursos gráficos según las directrices de la PEC, la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (&lt; 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.</span>
+                </li>
             </ul>
-
-            <h3 class="ai-declaration__subtitle">Instrucciones o prompts representativos</h3>
-            <blockquote>«A partir de estos enlaces de Wikimedia y Sketchfab con licencias CC BY-SA 3.0 y CC BY 4.0, redacta el bloque de créditos formal para index.html y README.md siguiendo las buenas prácticas de atribución académica.»</blockquote>
-            <blockquote>«Genera un código QR ligero en PNG que enlace a https://alfupe.github.io/pec3_realidad-virtual/ para integrarlo en la interfaz.»</blockquote>
-            <blockquote>«Ayúdame a calcular la velocidad y rotación de un modelo 3D en A-Frame para que patrulle entre -1.7 y 1.7 en X y gire fluidamente 180º al llegar a los extremos sin saltos bruscos.»</blockquote>
-            <blockquote>«Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»</blockquote>
-
-            <h3 class="ai-declaration__subtitle">Respuestas obtenidas</h3>
-            <p>La herramienta proporcionó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con los cálculos de coordenadas y escuchadores de eventos (<code>mouseenter</code>, <code>mouseleave</code>) para la interacción en A-Frame.</p>
-
-            <h3 class="ai-declaration__subtitle">Proceso de revisión, reelaboración y edición</h3>
-            <p>El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la búsqueda y selección de recursos gráficos según las directrices de la PEC, la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (&lt; 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.</p>
         </section>
     </main>
 
