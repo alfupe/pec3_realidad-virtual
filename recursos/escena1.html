@@ -22,17 +22,44 @@
         <a-light type="ambient" color="#ffffff" intensity="0.9"></a-light>
         <a-light type="directional" position="1 4 -2" intensity="0.5"></a-light>
 
-        <!-- Modelo 3D externo: Pez loro nadando en el arrecife -->
-        <!-- Incluye animación de nado continuo y reacción clara al cursor con mouseenter/mouseleave -->
-        <a-entity id="pez-arrecife"
-                  gltf-model="#modeloPez"
+        <!-- Modelo 3D externo: Pez mariposa nadando en el arrecife -->
+        <!-- Patrulla horizontal de lado a lado con giro de 180º; al pasar el cursor (mouseenter) reacciona acelerando el nado -->
+        <a-entity id="contenedor-pez"
                   position="0 1.2 -3"
-                  rotation="0 45 0"
-                  scale="0.6 0.6 0.6"
-                  animation="property: position; dir: alternate; dur: 2500; loop: true; to: 0 1.5 -3"
-                  animation__hover="property: scale; startEvents: mouseenter; dur: 400; to: 0.9 0.9 0.9"
-                  animation__leave="property: scale; startEvents: mouseleave; dur: 400; to: 0.6 0.6 0.6">
+                  animation="property: position; dir: alternate; dur: 6000; loop: true; easing: easeInOutSine; from: -2.5 1.2 -3; to: 2.5 1.2 -3">
+            <a-entity id="pez-arrecife"
+                      gltf-model="#modeloPez"
+                      scale="1.2 1.2 1.2"
+                      rotation="0 90 0"
+                      animation__flotar="property: position; dir: alternate; dur: 1500; loop: true; easing: easeInOutQuad; to: 0 0.15 0"
+                      animation__huir="property: scale; startEvents: mouseenter; dur: 250; to: 1.6 1.6 1.6"
+                      animation__calma="property: scale; startEvents: mouseleave; dur: 500; to: 1.2 1.2 1.2">
+            </a-entity>
         </a-entity>
+
+        <script>
+            // Giro del pez según el sentido de la trayectoria y reacción de huida al interactuar
+            var contenedor = document.getElementById('contenedor-pez');
+            var pez = document.getElementById('pez-arrecife');
+            var ultimoX = 0;
+
+            contenedor.addEventListener('animationloop', function () {
+                // Al cambiar de sentido en el bucle alternado, giramos el pez 180 grados
+                var rotActual = pez.getAttribute('rotation');
+                var nuevaY = (rotActual.y === 90) ? 270 : 90;
+                pez.setAttribute('rotation', { x: 0, y: nuevaY, z: 0 });
+            });
+
+            // Reacción interactiva: al tocar al pez con el cursor, acelera temporalmente (huye)
+            pez.addEventListener('mouseenter', function () {
+                contenedor.setAttribute('animation', 'dur', 2000);
+            });
+            pez.addEventListener('mouseleave', function () {
+                setTimeout(function () {
+                    contenedor.setAttribute('animation', 'dur', 6000);
+                }, 1000);
+            });
+        </script>
 
 
         <!-- Texto integrado en la escena 3D -->
