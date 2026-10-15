@@ -69,12 +69,15 @@ Siguiendo las directrices institucionales de la UOC sobre el uso ético, crític
 Asistente de Inteligencia Artificial (Gemini / Antigravity).
 
 ### Objetivos perseguidos
+* Búsqueda y localización de recursos multimedia equirrectangulares (fotografía panorámica y clip de vídeo 360º) de temática submarina con licencias libres compatibles (Creative Commons) en repositorios abiertos como Wikimedia Commons.
 * Redacción formal y normalización de los textos de créditos, atribuciones de autoría y licencias Creative Commons (CC BY-SA 3.0, CC BY 3.0 y CC BY 4.0) de los recursos multimedia y modelos 3D externos.
 * Estructuración jerárquica y redacción técnica de la documentación del proyecto (`README.md`) para el repositorio.
 * Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.
 * Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).
 
 ### Instrucciones o prompts representativos
+> «Ayúdame a buscar en Wikimedia Commons fotos panorámicas y vídeos submarinos 360º en proyección equirrectangular con licencias abiertas para usar en A-Frame.»
+
 > «A partir de estos enlaces de Wikimedia y Sketchfab con licencias CC BY-SA 3.0 y CC BY 4.0, redacta el bloque de créditos formal para index.html y README.md siguiendo las buenas prácticas de atribución académica.»
 
 > «Genera un código QR ligero en PNG que enlace a https://alfupe.github.io/pec3_realidad-virtual/ para integrarlo en la interfaz.»
@@ -84,8 +87,9 @@ Asistente de Inteligencia Artificial (Gemini / Antigravity).
 > «Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»
 
 ### Respuestas obtenidas
-La herramienta proporcionó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con los cálculos de coordenadas y escuchadores de eventos (`mouseenter`, `mouseleave`) para la interacción en A-Frame.
+La herramienta facilitó enlaces y descriptores de búsqueda en Wikimedia Commons para localizar recursos equirrectangulares libres, aportó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con cálculos de coordenadas y eventos (`mouseenter`, `mouseleave`) para la interacción en A-Frame.
 
 ### Proceso de revisión, reelaboración y edición
-El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la búsqueda y selección de recursos gráficos según las directrices de la PEC, la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (< 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.
+El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la selección final de los recursos multimedia y la comprobación directa de sus licencias originales, su recorte y transcodificación a formatos web óptimos (MP4 H.264 y JPG), la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (< 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.
+
 
