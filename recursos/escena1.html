@@ -23,51 +23,84 @@
         <a-light type="directional" position="1 4 -2" intensity="0.5"></a-light>
 
         <!-- Modelo 3D externo: Pez mariposa nadando en el arrecife -->
-        <!-- Patrulla horizontal de lado a lado con giro de 180º; al pasar el cursor (mouseenter) reacciona acelerando el nado -->
-        <a-entity id="contenedor-pez"
-                  position="0 1.2 -3"
-                  animation="property: position; dir: alternate; dur: 6000; loop: true; easing: easeInOutSine; from: -2.5 1.2 -3; to: 2.5 1.2 -3">
+        <!-- Patrulla horizontal cercana al usuario con giro fluido de 180º al llegar a los extremos -->
+        <a-entity id="contenedor-pez" position="0 1.1 -1.8">
             <a-entity id="pez-arrecife"
                       gltf-model="#modeloPez"
-                      scale="1.2 1.2 1.2"
+                      scale="1.1 1.1 1.1"
                       rotation="0 90 0"
-                      animation__flotar="property: position; dir: alternate; dur: 1500; loop: true; easing: easeInOutQuad; to: 0 0.15 0"
-                      animation__huir="property: scale; startEvents: mouseenter; dur: 250; to: 1.6 1.6 1.6"
-                      animation__calma="property: scale; startEvents: mouseleave; dur: 500; to: 1.2 1.2 1.2">
+                      animation__flotar="property: position; dir: alternate; dur: 1400; loop: true; easing: easeInOutSine; from: 0 -0.05 0; to: 0 0.05 0">
             </a-entity>
         </a-entity>
 
         <script>
-            // Giro del pez según el sentido de la trayectoria y reacción de huida al interactuar
+            // Lógica de nado continuo, giro de 180º en extremos y reacción de huida al cursor
             var contenedor = document.getElementById('contenedor-pez');
             var pez = document.getElementById('pez-arrecife');
-            var ultimoX = 0;
 
-            contenedor.addEventListener('animationloop', function () {
-                // Al cambiar de sentido en el bucle alternado, giramos el pez 180 grados
-                var rotActual = pez.getAttribute('rotation');
-                var nuevaY = (rotActual.y === 90) ? 270 : 90;
-                pez.setAttribute('rotation', { x: 0, y: nuevaY, z: 0 });
-            });
+            var posX = 0;
+            var posZ = -1.8; // Colocado más cerca para apreciar los detalles del modelo
+            var posY = 1.1;
+            var direccion = 1; // 1 = derecha, -1 = izquierda
+            var limiteX = 1.7; // Límites del recorrido horizontal
+            var velocidadNormal = 0.007;
+            var velocidad = velocidadNormal;
+            var girando = false;
 
-            // Reacción interactiva: al tocar al pez con el cursor, acelera temporalmente (huye)
+            function animarNado() {
+                if (!girando) {
+                    posX += direccion * velocidad;
+
+                    // Al llegar al extremo derecho, gira 180º para volver hacia la izquierda
+                    if (direccion === 1 && posX >= limiteX) {
+                        iniciarGiro(-90, -1);
+                    }
+                    // Al llegar al extremo izquierdo, gira 180º para volver hacia la derecha
+                    else if (direccion === -1 && posX <= -limiteX) {
+                        iniciarGiro(90, 1);
+                    } else {
+                        contenedor.setAttribute('position', posX + ' ' + posY + ' ' + posZ);
+                    }
+                }
+                requestAnimationFrame(animarNado);
+            }
+
+            function iniciarGiro(anguloDestino, nuevaDireccion) {
+                girando = true;
+                // Rotación suave de 180º sobre el pivote del pez
+                pez.setAttribute('animation__giro', {
+                    property: 'rotation',
+                    to: '0 ' + anguloDestino + ' 0',
+                    dur: 700,
+                    easing: 'easeInOutQuad'
+                });
+
+                setTimeout(function () {
+                    direccion = nuevaDireccion;
+                    girando = false;
+                }, 750);
+            }
+
+            // Al pasar el cursor por encima (mouseenter), el pez se asusta y acelera desde su posición actual
             pez.addEventListener('mouseenter', function () {
-                contenedor.setAttribute('animation', 'dur', 2000);
+                velocidad = velocidadNormal * 3.5;
             });
+
+            // Al salir del cursor (mouseleave), recupera gradualmente su velocidad normal de nado
             pez.addEventListener('mouseleave', function () {
                 setTimeout(function () {
-                    contenedor.setAttribute('animation', 'dur', 6000);
-                }, 1000);
+                    velocidad = velocidadNormal;
+                }, 800);
             });
+
+            // Iniciar cuando la escena esté cargada
+            var escena = document.querySelector('a-scene');
+            if (escena.hasLoaded) {
+                animarNado();
+            } else {
+                escena.addEventListener('loaded', animarNado);
+            }
         </script>
-
-
-        <!-- Texto integrado en la escena 3D -->
-        <a-text value="Arrecife de Coral 360"
-                position="-1.6 2.6 -3"
-                color="#ffffff"
-                scale="1.2 1.2 1.2">
-        </a-text>
 
         <!-- Cámara y cursor para interactuar con los objetos -->
         <a-camera>

@@ -44,25 +44,8 @@
         <!-- Fondo esférico para el vídeo 360 -->
         <a-videosphere src="#videoSubmarino" rotation="0 -90 0"></a-videosphere>
 
-        <!-- Objeto 3D integrado en la escena del vídeo -->
-        <a-box position="0 0.5 -4"
-               rotation="0 45 0"
-               scale="0.8 0.8 0.8"
-               color="#f59e0b"
-               animation="property: rotation; to: 0 405 0; loop: true; dur: 4000; easing: linear">
-        </a-box>
-
-        <!-- Texto informativo de la escena -->
-        <a-text value="Inmersion 360"
-                position="-1 2 -4"
-                color="#ffffff"
-                scale="1.5 1.5 1.5">
-        </a-text>
-
-        <!-- Cámara con cursor -->
-        <a-camera>
-            <a-cursor color="#ffffff"></a-cursor>
-        </a-camera>
+        <!-- Cámara -->
+        <a-camera></a-camera>
     </a-scene>
 
     <script>

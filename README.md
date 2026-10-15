@@ -10,8 +10,8 @@
 
 Práctica correspondiente a la PEC3 de Realidad Virtual. Consiste en la creación de dos escenas inmersivas en 360º utilizando A-Frame:
 
-1. **Escena 1 (Foto 360º):** Utiliza la etiqueta `<a-sky>` con una imagen panorámica equirrectangular de un arrecife de coral. Se incorpora un modelo 3D externo (`pez.glb`), texto 3D y animaciones tanto continuas como disparadas mediante la interacción del cursor (`mouseenter` y `mouseleave`).
-2. **Escena 2 (Vídeo 360º):** Utiliza la etiqueta `<a-videosphere>` con un clip de vídeo submarino en formato MP4 compatible. Incluye control de reproducción/pausa y un objeto 3D con animación dentro de la escena.
+1. **Escena 1 (Foto 360º):** Utiliza la etiqueta `<a-sky>` con una imagen panorámica equirrectangular de un arrecife de coral. Se incorpora un modelo 3D externo (`pez.glb`) con patrulla horizontal continua, giro suave de 180º en los extremos e interacción reactiva de huida mediante el cursor (`mouseenter` y `mouseleave`).
+2. **Escena 2 (Vídeo 360º):** Utiliza la etiqueta `<a-videosphere>` con un clip de vídeo submarino 360º en formato MP4 compatible y control interactivo de reproducción/pausa.
 
 Ambas escenas están incrustadas en el archivo principal `index.html` mediante etiquetas `<iframe>` siguiendo las instrucciones del paso 7 del tutorial de la asignatura.
 
