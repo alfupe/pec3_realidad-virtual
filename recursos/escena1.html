@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Escena 1 - Panorámica 360º con a-sky</title>
-    <meta name="description" content="PEC 3: Escena 1 con imagen 360 y elementos interactivos">
+    <meta name="description" content="PEC 3: Escena 1 con imagen 360 y modelo 3D">
     <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
 </head>
 <body>
@@ -11,35 +11,45 @@
         <!-- Declaración de recursos -->
         <a-assets>
             <img id="arrecife" src="arrecife360.jpg">
+            <!-- Modelo 3D importado según paso 5 del tutorial -->
+            <a-asset-item id="modeloPez" src="pez.glb"></a-asset-item>
         </a-assets>
 
-        <!-- Fondo esférico de 360 grados -->
+        <!-- Fondo esférico de 360 grados con imagen fija -->
         <a-sky id="fondo-360" src="#arrecife" rotation="0 -70 0"></a-sky>
 
-        <!-- Objeto 1: Caja interactiva que gira y reacciona al cursor con mouseenter -->
-        <a-box position="-3 1.5 -5"
-               rotation="0 30 20"
-               scale="1.2 1.2 1.2"
-               color="#0284c7"
-               animation="property: position; dir: alternate; dur: 2000; loop: true; to: -3 1.8 -5"
-               animation__mouseenter="property: rotation; startEvents: mouseenter; dur: 600; to: 0 390 20">
-        </a-box>
+        <!-- Luz ambiental para que el modelo 3D se aprecie correctamente -->
+        <a-light type="ambient" color="#ffffff" intensity="0.9"></a-light>
+        <a-light type="directional" position="1 4 -2" intensity="0.5"></a-light>
 
-        <!-- Objeto 2: Esfera flotante con animación continua -->
-        <a-sphere position="3 2 -4"
-                  radius="0.7"
-                  color="#0d9488"
-                  animation="property: scale; dir: alternate; dur: 1500; loop: true; to: 0.85 0.85 0.85">
-        </a-sphere>
+        <!-- Modelo 3D externo: Pez loro nadando en el arrecife -->
+        <!-- Incluye animación de nado continuo y reacción clara al cursor con mouseenter/mouseleave -->
+        <a-entity id="pez-arrecife"
+                  gltf-model="#modeloPez"
+                  position="0 1.2 -3"
+                  rotation="0 45 0"
+                  scale="0.6 0.6 0.6"
+                  animation="property: position; dir: alternate; dur: 2500; loop: true; to: 0 1.5 -3"
+                  animation__hover="property: scale; startEvents: mouseenter; dur: 400; to: 0.9 0.9 0.9"
+                  animation__leave="property: scale; startEvents: mouseleave; dur: 400; to: 0.6 0.6 0.6">
+        </a-entity>
 
-        <!-- Texto integrado en la escena -->
+        <!-- Objeto geométrico de apoyo: Boya / marcador submarino -->
+        <a-cylinder position="-3 1 -4"
+                    radius="0.3"
+                    height="0.8"
+                    color="#eab308"
+                    animation="property: rotation; to: 0 360 0; loop: true; dur: 6000; easing: linear">
+        </a-cylinder>
+
+        <!-- Texto integrado en la escena 3D -->
         <a-text value="Arrecife de Coral 360"
-                position="-2 3 -5"
+                position="-1.6 2.6 -3"
                 color="#ffffff"
-                scale="1.5 1.5 1.5">
+                scale="1.2 1.2 1.2">
         </a-text>
 
-        <!-- Cámara con cursor para interacción -->
+        <!-- Cámara y cursor para interactuar con los objetos -->
         <a-camera>
             <a-cursor color="#ffffff"></a-cursor>
         </a-camera>
