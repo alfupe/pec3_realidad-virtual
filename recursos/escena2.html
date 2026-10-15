@@ -52,7 +52,7 @@
 
         <!-- Modelo 3D externo: Mantarraya planeando en la corriente submarina -->
         <!-- Al mirarla con el cursor (mouseenter), se asusta y se aleja hacia las profundidades (eje Z) -->
-        <a-entity id="contenedor-manta" position="0 0 -3.2">
+        <a-entity id="contenedor-manta" position="0 0 -2.2">
             <a-entity id="mantarraya-submarina"
                       gltf-model="#modeloManta"
                       rotation="0 85 0"
@@ -100,7 +100,7 @@
             setTimeout(function () {
                 contenedorManta.setAttribute('animation__huida', {
                     property: 'position',
-                    to: '0 0 -3.2',
+                    to: '0 0 -2.2',
                     dur: 1800,
                     easing: 'easeInOutQuad'
                 });
