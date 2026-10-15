@@ -2,25 +2,140 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Escena 1 - Panorámica 360º (Foto)</title>
-    <meta name="description" content="PEC 3: Escena 1 con a-sky">
+    <title>Escena 1 - Arrecife Submarino 360º (Foto)</title>
+    <meta name="description" content="PEC 3: Escena 1 interactiva con a-sky">
     <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+    <script>
+        // Componente interactivo para mostrar/ocultar información de hotspots
+        AFRAME.registerComponent('hotspot-info', {
+            schema: {
+                target: {type: 'selector'}
+            },
+            init: function () {
+                var el = this.el;
+                var target = this.data.target;
+
+                el.addEventListener('mouseenter', function () {
+                    el.setAttribute('scale', '1.3 1.3 1.3');
+                    if (target) target.setAttribute('visible', 'true');
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    el.setAttribute('scale', '1 1 1');
+                    if (target) target.setAttribute('visible', 'false');
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <a-scene>
-        <!-- Cámara y cursor -->
-        <a-camera>
-            <a-cursor color="#38bdf8"></a-cursor>
+        <!-- Gestor de Assets -->
+        <a-assets>
+            <img id="reefTexture" src="arrecife360.jpg">
+        </a-assets>
+
+        <!-- Fondo esférico 360º de la fotografía submarina -->
+        <a-sky id="image-360" src="#reefTexture" rotation="0 -70 0"></a-sky>
+
+        <!-- Cámara con cursor e indicador visual de interacción -->
+        <a-camera position="0 1.6 0">
+            <a-cursor color="#38bdf8"
+                      fuse="true"
+                      fuse-timeout="1200"
+                      raycaster="objects: .clickable"
+                      animation__fusing="property: scale; from: 1 1 1; to: 0.2 0.2 0.2; dur: 1200; startEvents: fusing"
+                      animation__mouseleave="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave">
+            </a-cursor>
         </a-camera>
 
-        <!-- Fondo 360 grados con a-sky -->
-        <a-sky color="#1e293b"></a-sky>
+        <!-- ILUMINACIÓN -->
+        <a-light type="ambient" color="#93c5fd" intensity="0.8"></a-light>
+        <a-light type="directional" position="0 5 -2" intensity="0.6" color="#38bdf8"></a-light>
 
-        <!-- Elemento de muestra provisional -->
-        <a-box position="0 1.5 -3" rotation="0 45 0" color="#38bdf8"
-               animation="property: rotation; to: 0 405 0; loop: true; dur: 8000; easing: linear">
-        </a-box>
-        <a-text value="Escena 1: a-sky (En construccion)" align="center" position="0 2.5 -3" color="#ffffff"></a-text>
+        <!-- HOTSPOT 1: Arrecife de Coral Vivo -->
+        <a-entity position="-2 0.8 -4">
+            <a-sphere class="clickable"
+                      radius="0.22"
+                      color="#0284c7"
+                      opacity="0.85"
+                      hotspot-info="target: #info-coral"
+                      animation="property: position; to: -2 1.0 -4; dir: alternate; loop: true; dur: 1800; easing: easeInOutSine">
+                <a-ring radius-inner="0.26" radius-outer="0.32" color="#38bdf8"
+                        animation="property: rotation; to: 360 360 0; loop: true; dur: 4000; easing: linear">
+                </a-ring>
+            </a-sphere>
+            <!-- Panel informativo -->
+            <a-entity id="info-coral" position="0 0.8 0" visible="false">
+                <a-plane width="2.4" height="1.1" color="#0f172a" opacity="0.9" material="shader: flat">
+                    <a-text value="Arrecife de Coral Vivo\n\nEcosistema clave con alta biodiversidad marina.\nSirve de refugio y alimento para miles de especies."
+                            align="center" width="2.2" color="#f8fafc" position="0 0 0.02"></a-text>
+                </a-plane>
+            </a-entity>
+        </a-entity>
+
+        <!-- HOTSPOT 2: Tortuga Marina / Fauna Pelágica -->
+        <a-entity position="3.5 1.8 -3.5">
+            <a-sphere class="clickable"
+                      radius="0.22"
+                      color="#0d9488"
+                      opacity="0.85"
+                      hotspot-info="target: #info-tortuga"
+                      animation="property: position; to: 3.5 2.0 -3.5; dir: alternate; loop: true; dur: 2200; easing: easeInOutSine">
+                <a-ring radius-inner="0.26" radius-outer="0.32" color="#2dd4bf"
+                        animation="property: rotation; to: 0 360 360; loop: true; dur: 4500; easing: linear">
+                </a-ring>
+            </a-sphere>
+            <!-- Panel informativo -->
+            <a-entity id="info-tortuga" position="0 0.8 0" visible="false">
+                <a-plane width="2.4" height="1.1" color="#0f172a" opacity="0.9" material="shader: flat">
+                    <a-text value="Fauna Pelagica: Tortuga Carey\n\nEspecie vulnerable que frecuenta los atolones.\nAyuda al equilibrio del arrecife al alimentarse de esponjas."
+                            align="center" width="2.2" color="#f8fafc" position="0 0 0.02"></a-text>
+                </a-plane>
+            </a-entity>
+        </a-entity>
+
+        <!-- FAUNA MARINA 3D (Entidad estilizada en movimiento orbital) -->
+        <a-entity animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
+            <a-entity position="4 1 0" rotation="0 90 0">
+                <!-- Pez cirujano / criatura marina basada en primitivas compuestas -->
+                <a-cone radius-bottom="0.25" radius-top="0.02" height="0.6" color="#38bdf8" rotation="90 0 0">
+                    <a-triangle color="#f59e0b" vertex-a="0 0.1 0" vertex-b="-0.2 -0.2 0" vertex-c="0.2 -0.2 0"
+                                position="0 -0.35 0" rotation="-90 0 0"
+                                animation="property: rotation; to: -90 25 0; dir: alternate; loop: true; dur: 400; easing: easeInOutQuad">
+                    </a-triangle>
+                </a-cone>
+            </a-entity>
+        </a-entity>
+
+        <!-- SEGUNDO GRUPO DE PECES EN OTRA ÓRBITA -->
+        <a-entity animation="property: rotation; to: 0 -360 0; loop: true; dur: 16000; easing: linear">
+            <a-entity position="-3.5 2 0" rotation="0 -90 0">
+                <a-cone radius-bottom="0.2" radius-top="0.02" height="0.5" color="#f43f5e" rotation="90 0 0">
+                    <a-triangle color="#fbbf24" vertex-a="0 0.1 0" vertex-b="-0.15 -0.15 0" vertex-c="0.15 -0.15 0"
+                                position="0 -0.3 0" rotation="-90 0 0"
+                                animation="property: rotation; to: -90 -25 0; dir: alternate; loop: true; dur: 350; easing: easeInOutQuad">
+                    </a-triangle>
+                </a-cone>
+            </a-entity>
+        </a-entity>
+
+        <!-- EFECTO AMBIENTAL: Columna de burbujas ascendentes -->
+        <a-entity position="1 0 -2.5">
+            <a-sphere radius="0.05" color="#e0f2fe" opacity="0.6"
+                      animation="property: position; from: 0 -1 0; to: 0 4 0; loop: true; dur: 3000; easing: easeInQuad"></a-sphere>
+            <a-sphere radius="0.07" color="#e0f2fe" opacity="0.5" position="0.2 0 0.1"
+                      animation="property: position; from: 0.2 -1 0.1; to: 0.2 4 0.1; loop: true; dur: 3600; delay: 800; easing: easeInQuad"></a-sphere>
+            <a-sphere radius="0.04" color="#e0f2fe" opacity="0.7" position="-0.15 0 -0.1"
+                      animation="property: position; from: -0.15 -1 -0.1; to: -0.15 4 -0.1; loop: true; dur: 2800; delay: 1400; easing: easeInQuad"></a-sphere>
+        </a-entity>
+
+        <a-entity position="-2 0 -1.5">
+            <a-sphere radius="0.06" color="#e0f2fe" opacity="0.6"
+                      animation="property: position; from: 0 -1 0; to: 0 4 0; loop: true; dur: 3200; delay: 500; easing: easeInQuad"></a-sphere>
+            <a-sphere radius="0.04" color="#e0f2fe" opacity="0.5" position="0.1 0 0"
+                      animation="property: position; from: 0.1 -1 0; to: 0.1 4 0; loop: true; dur: 2700; delay: 1200; easing: easeInQuad"></a-sphere>
+        </a-entity>
     </a-scene>
 </body>
 </html>

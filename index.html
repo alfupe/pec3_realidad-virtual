@@ -3,71 +3,92 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEC3_Fuentes_Alejandro</title>
-    <meta name="description" content="PEC 3: Tutorial de A-FRAME 360º. PEC3_Fuentes_Alejandro">
+    <title>PEC3_Fuentes_Alejandro - Inmersión 360º</title>
+    <meta name="description" content="PEC 3: Tutorial de A-FRAME 360º. Experiencia inmersiva submarina en arrecife de coral. PEC3_Fuentes_Alejandro">
     <link rel="stylesheet" href="recursos/styles.css">
 </head>
 <body>
     <main class="page">
         <header class="page__header">
-            <h1 class="page__title">PEC 3: Tutorial de A-FRAME 360º</h1>
-            <h2 class="page__subtitle">UOC - Realidad virtual (semestre 2627/1)</h2>
-            <p class="page__author">Alejandro Fuentes Pérez</p>
+            <h1 class="page__title">PEC 3: Panorámicas 360º con A-FRAME</h1>
+            <h2 class="page__subtitle">UOC - Realidad virtual (Semestre 2627/1)</h2>
+            <p class="page__author">Alejandro Fuentes Pérez (<code>alfupe@uoc.edu</code>)</p>
         </header>
 
         <!-- Selector de Escena -->
         <nav class="page__nav" aria-label="Selector de escena de Realidad Virtual">
-            <button class="tab-btn is-active" id="btn-scene1" onclick="showScene(1)">Escena 1: Foto 360º (&lt;a-sky&gt;)</button>
-            <button class="tab-btn" id="btn-scene2" onclick="showScene(2)">Escena 2: Vídeo 360º (&lt;a-videosphere&gt;)</button>
+            <button class="tab-btn is-active" id="btn-scene1" onclick="showScene(1)">🌊 Escena 1: Foto 360º (&lt;a-sky&gt;)</button>
+            <button class="tab-btn" id="btn-scene2" onclick="showScene(2)">📹 Escena 2: Vídeo 360º (&lt;a-videosphere&gt;)</button>
         </nav>
 
-        <!-- Visor de las Escenas (mediante iframe según punto 7 del tutorial) -->
+        <!-- Visor de las Escenas (mediante iframe según paso 7 del tutorial) -->
         <section class="page__viewer">
             <div id="scene-wrapper-1" class="scene-container is-active">
-                <iframe id="iframe-scene1" class="scene-frame" src="recursos/escena1.html" title="Escena 1 - Panorámica 360º"></iframe>
+                <iframe id="iframe-scene1" class="scene-frame" src="recursos/escena1.html" title="Escena 1 - Panorámica Arrecife 360º" allow="xr-spatial-tracking; fullscreen"></iframe>
             </div>
             <div id="scene-wrapper-2" class="scene-container">
-                <iframe id="iframe-scene2" class="scene-frame" src="recursos/escena2.html" title="Escena 2 - Vídeo 360º"></iframe>
+                <iframe id="iframe-scene2" class="scene-frame" src="recursos/escena2.html" title="Escena 2 - Vídeo Inmersión 360º" allow="xr-spatial-tracking; fullscreen"></iframe>
             </div>
         </section>
 
         <footer class="page__footer">
-            <p>Usa el ratón o arrastra para rotar la vista 360º. En móvil, orienta el dispositivo para explorar la escena.</p>
-            <p class="page__warning">Nota: los vídeos 360º requieren interacción de usuario para iniciar la reproducción debido a políticas del navegador.</p>
+            <p><strong>Controles:</strong> Arrastra con el ratón o el dedo para girar en 360º. En gafas VR o móvil con giroscopio, mueve la orientación de tu mirada.</p>
+            <p class="page__warning">💡 En la <strong>Escena 1</strong> apunta con el cursor a los puntos flotantes para ver información biológica. En la <strong>Escena 2</strong> apunta o haz clic en la consola de buceo para controlar el vídeo.</p>
         </footer>
 
-        <!-- Checklist de la práctica según enunciado -->
+        <!-- Checklist de la práctica según la rúbrica de evaluación -->
         <section class="section-block">
-            <h2 class="section-block__title">Requisitos del proyecto (PEC3)</h2>
+            <h2 class="section-block__title">📋 Checklist de la práctica y Rúbrica R3</h2>
             <ul class="checklist">
                 <li class="checklist__item">
-                    🔄 <strong>Escena 1 - Fondo panorámico 360º fijo (<code>&lt;a-sky&gt;</code>)</strong>
-                    <small class="checklist__note">Integración de imagen equirrectangular 360º con elementos interactivos y animados.</small>
+                    ✅ <strong>Escena 1: Fondo panorámico 360º estático (<code>&lt;a-sky&gt;</code>)</strong>
+                    <small class="checklist__note">Fotografía submarina equirrectangular de arrecife de coral (4096×2048 px) en alta definición, optimizada en formato JPEG a 1.6 MB.</small>
                 </li>
                 <li class="checklist__item">
-                    🔄 <strong>Escena 2 - Fondo panorámico 360º en vídeo (<code>&lt;a-videosphere&gt;</code>)</strong>
-                    <small class="checklist__note">Integración de clip de vídeo equirrectangular optimizado en formato MP4 con control de reproducción.</small>
+                    ✅ <strong>Originalidad Escena 1 (Más allá de solo mostrar la imagen)</strong>
+                    <small class="checklist__note">Puntos de interés (hotspots) 3D interactivos con panel informativo desplegable mediante cursor (evento <code>mouseenter</code>/<code>mouseleave</code>), fauna marina estilizada animada en órbita y columnas de burbujas volumétricas ascendentes.</small>
                 </li>
                 <li class="checklist__item">
-                    ✅ <strong>Estructura de entrega y carpetas</strong>
-                    <small class="checklist__note">Página raíz <code>index.html</code> y subcarpeta <code>recursos/</code> para el resto de archivos y assets.</small>
+                    ✅ <strong>Escena 2: Fondo panorámico 360º en vídeo (<code>&lt;a-videosphere&gt;</code>)</strong>
+                    <small class="checklist__note">Vídeo submarino equirrectangular nativo en formato MP4 (H.264) optimizado, con atributos <code>playsinline webkit-playsinline</code> para compatibilidad móvil universal.</small>
                 </li>
                 <li class="checklist__item">
-                    ✅ <strong>Incrustación en documento HTML</strong>
-                    <small class="checklist__note">Uso de <code>&lt;iframe&gt;</code> conforme al paso 7 del tutorial para integrar ambas escenas en una interfaz web.</small>
+                    ✅ <strong>Originalidad Escena 2 (Más allá de solo mostrar el vídeo)</strong>
+                    <small class="checklist__note">Consola HUD 3D de buceo interactiva flotante en el espacio tridimensional con botones interactivos para alternar Reproducción/Pausa, sonido y visualización de telemetría de buceo en tiempo real.</small>
                 </li>
                 <li class="checklist__item">
-                    ✅ <strong>Límite de tamaño (&lt; 10 MB)</strong>
-                    <small class="checklist__note">Optimización exhaustiva de medios 360º para asegurar un empaquetado inferior a 10 MB.</small>
+                    ✅ <strong>Incrustación en documento HTML (Paso 7 del Tutorial)</strong>
+                    <small class="checklist__note">Integración de ambas escenas mediante elementos <code>&lt;iframe&gt;</code> en un visualizador interactivo por pestañas con diseño responsive.</small>
+                </li>
+                <li class="checklist__item">
+                    ✅ <strong>Estructura de entrega y control de peso estricto (&lt; 10 MB)</strong>
+                    <small class="checklist__note">Estructura requerida: <code>index.html</code> en la raíz y subcarpeta <code>recursos/</code>. El peso total del proyecto completo es de tan solo <strong>~5.4 MB</strong>, muy por debajo del límite de 10 MB.</small>
                 </li>
             </ul>
         </section>
 
-        <!-- Créditos y Atribuciones -->
+        <!-- Créditos y Atribuciones de Propiedad Intelectual -->
         <section class="section-block">
-            <h2 class="section-block__title">Créditos y licencias</h2>
+            <h2 class="section-block__title">📚 Créditos y Licencias de Propiedad Intelectual</h2>
             <ul class="credits-list">
-                <li>(En construcción: se documentarán aquí los recursos panorámicos, modelos y audios seleccionados).</li>
+                <li>
+                    <strong>Imagen panorámica 360º (Escena 1 - Arrecife de Coral):</strong><br>
+                    <em>"Heron Bommie SVII"</em> capturada con el sistema submarino Seaview SVII.<br>
+                    <strong>Autor:</strong> © Underwater Earth / XL Catlin Seaview Survey / Christophe Bailhache.<br>
+                    <strong>Fuente:</strong> <a href="https://commons.wikimedia.org/wiki/File:Heron_Bommie_SVII.jpg" target="_blank" rel="noopener">Wikimedia Commons - Heron Bommie SVII</a>.<br>
+                    <strong>Licencia:</strong> <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)</a>.
+                </li>
+                <li style="margin-top: 1rem;">
+                    <strong>Vídeo 360º (Escena 2 - Inmersión y Buceo Submarino):</strong><br>
+                    <em>"Fiesa underwater 360 video vr #insta360x4"</em> grabado con cámara subacuática panorámica Insta360 X4.<br>
+                    <strong>Autor:</strong> Snicel 69.<br>
+                    <strong>Fuente:</strong> <a href="https://commons.wikimedia.org/wiki/File:Fiesa_underwater_360_video_vr_-insta360x4.webm" target="_blank" rel="noopener">Wikimedia Commons - Fiesa underwater 360 video</a>.<br>
+                    <strong>Licencia:</strong> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">Creative Commons Attribution 3.0 Unported (CC BY 3.0)</a>.
+                </li>
+                <li style="margin-top: 1rem;">
+                    <strong>Framework de Realidad Virtual:</strong><br>
+                    <a href="https://aframe.io/" target="_blank" rel="noopener">A-Frame v1.8.0</a> (Licencia MIT, Supermedium & Mozilla WebVR team).
+                </li>
             </ul>
         </section>
     </main>
