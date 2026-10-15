@@ -139,3 +139,40 @@ body {
     color: #555;
     font-size: 0.85rem;
 }
+
+.access-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.access-box__info p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.access-box__info p:last-child {
+    margin-bottom: 0;
+}
+
+.access-box__hint {
+    color: #666;
+    font-size: 0.85rem !important;
+}
+
+.access-box__qr img {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    background: #fff;
+}
+
+@media (max-width: 600px) {
+    .access-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
