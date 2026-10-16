@@ -142,7 +142,11 @@
     </main>
 
     <script>
-        function cambiarEscena(num) {
+        function cambiarEscena(num, actualizarUrl) {
+            if (actualizarUrl === undefined) {
+                actualizarUrl = true;
+            }
+
             var c1 = document.getElementById('contenedor-1');
             var c2 = document.getElementById('contenedor-2');
             var b1 = document.getElementById('btn-scene1');
@@ -159,7 +163,29 @@
                 b1.className = 'scene-btn';
                 b2.className = 'scene-btn active';
             }
+
+            if (actualizarUrl && window.history && window.history.pushState) {
+                var url = new URL(window.location);
+                url.searchParams.set('escena', num);
+                window.history.pushState({ escena: num }, '', url);
+            }
         }
+
+        // Leer parámetro ?escena=1 o ?escena=2 al cargar la página
+        window.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(window.location.search);
+            var escena = params.get('escena');
+            if (escena === '2') {
+                cambiarEscena(2, false);
+            }
+        });
+
+        // Soportar navegación con botones Atrás / Adelante del navegador
+        window.addEventListener('popstate', function () {
+            var params = new URLSearchParams(window.location.search);
+            var num = params.get('escena') === '2' ? 2 : 1;
+            cambiarEscena(num, false);
+        });
     </script>
 </body>
 </html>
