@@ -31,6 +31,32 @@ El proyecto se puede visualizar en GitHub Pages en la siguiente dirección:
 
 ---
 
+## Compatibilidad y Requisitos de Navegación
+
+El proyecto utiliza **A-Frame 1.8.0** sobre **WebGL 2.0 / WebXR** y componentes multimedia en estándares web universales (H.264 MP4 y GLTF/GLB 2.0).
+
+### Navegadores y versiones mínimas recomendadas
+* **Google Chrome:** Versión 79 o superior (soporte completo de WebXR Device API y WebGL 2.0).
+* **Mozilla Firefox:** Versión 75 o superior.
+* **Apple Safari (macOS / iOS):** Versión 15.4 o superior (soporte de WebGL 2.0 y WebKit WebXR).
+* **Microsoft Edge:** Versión 79 o superior (Chromium).
+* **Meta Quest Browser:** Compatible de forma nativa para experiencia inmersiva completa en visor VR standalone.
+
+### Consideraciones técnicas y Cross-Browser
+1. **Contexto Seguro (HTTPS / Localhost):**  
+   Las APIs de WebXR y el acceso a los sensores de orientación y movimiento del dispositivo (*DeviceOrientation / Gyroscope*) exigen imperativamente un **entorno seguro (HTTPS)**. Por ello, el acceso recomendado es a través del despliegue en **GitHub Pages**.  
+   *Nota para pruebas en local:* Debido a las políticas de seguridad CORS del navegador para modelos `.glb` y texturas, si se ejecuta en local debe abrirse mediante un servidor web local (por ejemplo `python3 -m http.server 8080` o la extensión *Live Server* de VS Code), y no directamente haciendo doble clic con protocolo `file:///`.
+
+2. **Permisos de sensores en `<iframe>` (Móvil / Giroscopio):**  
+   Para garantizar que la vista panorámica responda a los giroscopios y acelerómetros móviles desde dentro del marco `<iframe>`, las etiquetas incorporan la política de permisos explícita:  
+   `allow="autoplay; accelerometer; gyroscope; xr-spatial-tracking; fullscreen"`.  
+   En dispositivos iOS (Safari), al activar el modo VR el navegador puede solicitar confirmación de acceso a los sensores de movimiento.
+
+3. **Políticas de Autoplay de vídeo (*Autoplay Policy*):**  
+   Para evitar bloqueos de seguridad en navegadores que restringen la reproducción automática no solicitada, la Escena 2 incluye el atributo `muted` en el vídeo y un botón de control (*Reproducir / Pausar*) sincronizado que garantiza el inicio inmediato bajo cualquier circunstancia o navegador.
+
+---
+
 ## Estructura de archivos
 
 ```text
