@@ -142,15 +142,11 @@
     </main>
 
     <script>
-        function cambiarEscena(num, actualizarUrl) {
-            if (actualizarUrl === undefined) {
-                actualizarUrl = true;
-            }
-
-            var c1 = document.getElementById('contenedor-1');
-            var c2 = document.getElementById('contenedor-2');
-            var b1 = document.getElementById('btn-scene1');
-            var b2 = document.getElementById('btn-scene2');
+        function cambiarEscena(num, actualizarUrl = true) {
+            const c1 = document.querySelector('#contenedor-1');
+            const c2 = document.querySelector('#contenedor-2');
+            const b1 = document.querySelector('#btn-scene1');
+            const b2 = document.querySelector('#btn-scene2');
 
             if (num === 1) {
                 c1.className = 'scene-container active';
@@ -165,25 +161,25 @@
             }
 
             if (actualizarUrl && window.history && window.history.pushState) {
-                var url = new URL(window.location);
+                const url = new URL(window.location);
                 url.searchParams.set('escena', num);
                 window.history.pushState({ escena: num }, '', url);
             }
         }
 
         // Leer parámetro ?escena=1 o ?escena=2 al cargar la página
-        window.addEventListener('DOMContentLoaded', function () {
-            var params = new URLSearchParams(window.location.search);
-            var escena = params.get('escena');
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const escena = params.get('escena');
             if (escena === '2') {
                 cambiarEscena(2, false);
             }
         });
 
         // Soportar navegación con botones Atrás / Adelante del navegador
-        window.addEventListener('popstate', function () {
-            var params = new URLSearchParams(window.location.search);
-            var num = params.get('escena') === '2' ? 2 : 1;
+        window.addEventListener('popstate', () => {
+            const params = new URLSearchParams(window.location.search);
+            const num = params.get('escena') === '2' ? 2 : 1;
             cambiarEscena(num, false);
         });
     </script>

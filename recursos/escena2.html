@@ -71,8 +71,8 @@
 
     <script>
         // Control de reproducción y pausa del vídeo 360
-        var video = document.getElementById('videoSubmarino');
-        var btn = document.getElementById('btnControl');
+        const video = document.querySelector('#videoSubmarino');
+        const btn = document.querySelector('#btnControl');
 
         // Sincronizar el texto del botón según el estado real de reproducción
         video.addEventListener('play', function () {
@@ -104,8 +104,8 @@
         });
 
         // Interacción: al pasar el cursor (mouseenter), la mantarraya se asusta y se aleja en el eje Z
-        var contenedorManta = document.getElementById('contenedor-manta');
-        var manta = document.getElementById('mantarraya-submarina');
+        const contenedorManta = document.querySelector('#contenedor-manta');
+        const manta = document.querySelector('#mantarraya-submarina');
 
         manta.addEventListener('mouseenter', function () {
             contenedorManta.setAttribute('animation__huida', {
