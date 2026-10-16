@@ -75,27 +75,27 @@
         const btn = document.querySelector('#btnControl');
 
         // Sincronizar el texto del botón según el estado real de reproducción
-        video.addEventListener('play', function () {
+        video.addEventListener('play', () => {
             btn.textContent = 'Pausar vídeo';
         });
 
-        video.addEventListener('pause', function () {
+        video.addEventListener('pause', () => {
             btn.textContent = 'Reproducir vídeo';
         });
 
         // Intentar reproducción automática (autoplay) con captura de bloqueo de navegador
-        var playPromise = video.play();
+        const playPromise = video.play();
         if (playPromise !== undefined) {
-            playPromise.then(function () {
+            playPromise.then(() => {
                 btn.textContent = 'Pausar vídeo';
-            }).catch(function () {
+            }).catch(() => {
                 // Si la política del navegador bloquea el autoplay sin interacción previa,
                 // el botón queda disponible para que el usuario inicie el vídeo con un clic.
                 btn.textContent = 'Reproducir vídeo';
             });
         }
 
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', () => {
             if (video.paused) {
                 video.play();
             } else {
@@ -107,7 +107,7 @@
         const contenedorManta = document.querySelector('#contenedor-manta');
         const manta = document.querySelector('#mantarraya-submarina');
 
-        manta.addEventListener('mouseenter', function () {
+        manta.addEventListener('mouseenter', () => {
             contenedorManta.setAttribute('animation__huida', {
                 property: 'position',
                 to: '0 0.3 -6.0',
@@ -116,8 +116,8 @@
             });
         });
 
-        manta.addEventListener('mouseleave', function () {
-            setTimeout(function () {
+        manta.addEventListener('mouseleave', () => {
+            setTimeout(() => {
                 contenedorManta.setAttribute('animation__huida', {
                     property: 'position',
                     to: '0 0 -2.2',

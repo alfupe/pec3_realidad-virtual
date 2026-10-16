@@ -38,16 +38,33 @@
             const contenedor = document.querySelector('#contenedor-pez');
             const pez = document.querySelector('#pez-arrecife');
 
-            var posX = 0;
-            var posZ = -1.8; // Colocado más cerca para apreciar los detalles del modelo
-            var posY = 1.1;
-            var direccion = 1; // 1 = derecha, -1 = izquierda
-            var limiteX = 1.7; // Límites del recorrido horizontal
-            var velocidadNormal = 0.007;
-            var velocidad = velocidadNormal;
-            var girando = false;
+            const posZ = -1.8; // Colocado más cerca para apreciar los detalles del modelo
+            const posY = 1.1;
+            const limiteX = 1.7; // Límites del recorrido horizontal
+            const velocidadNormal = 0.007;
 
-            function animarNado() {
+            let posX = 0;
+            let direccion = 1; // 1 = derecha, -1 = izquierda
+            let velocidad = velocidadNormal;
+            let girando = false;
+
+            const iniciarGiro = (anguloDestino, nuevaDireccion) => {
+                girando = true;
+                // Rotación suave de 180º sobre el pivote del pez
+                pez.setAttribute('animation__giro', {
+                    property: 'rotation',
+                    to: `0 ${anguloDestino} 0`,
+                    dur: 700,
+                    easing: 'easeInOutQuad'
+                });
+
+                setTimeout(() => {
+                    direccion = nuevaDireccion;
+                    girando = false;
+                }, 750);
+            };
+
+            const animarNado = () => {
                 if (!girando) {
                     posX += direccion * velocidad;
 
@@ -59,42 +76,26 @@
                     else if (direccion === -1 && posX <= -limiteX) {
                         iniciarGiro(90, 1);
                     } else {
-                        contenedor.setAttribute('position', posX + ' ' + posY + ' ' + posZ);
+                        contenedor.setAttribute('position', `${posX} ${posY} ${posZ}`);
                     }
                 }
                 requestAnimationFrame(animarNado);
-            }
-
-            function iniciarGiro(anguloDestino, nuevaDireccion) {
-                girando = true;
-                // Rotación suave de 180º sobre el pivote del pez
-                pez.setAttribute('animation__giro', {
-                    property: 'rotation',
-                    to: '0 ' + anguloDestino + ' 0',
-                    dur: 700,
-                    easing: 'easeInOutQuad'
-                });
-
-                setTimeout(function () {
-                    direccion = nuevaDireccion;
-                    girando = false;
-                }, 750);
-            }
+            };
 
             // Al pasar el cursor por encima (mouseenter), el pez se asusta y acelera desde su posición actual
-            pez.addEventListener('mouseenter', function () {
+            pez.addEventListener('mouseenter', () => {
                 velocidad = velocidadNormal * 3.5;
             });
 
             // Al salir del cursor (mouseleave), recupera gradualmente su velocidad normal de nado
-            pez.addEventListener('mouseleave', function () {
-                setTimeout(function () {
+            pez.addEventListener('mouseleave', () => {
+                setTimeout(() => {
                     velocidad = velocidadNormal;
                 }, 800);
             });
 
             // Iniciar cuando la escena esté cargada
-            var escena = document.querySelector('a-scene');
+            const escena = document.querySelector('a-scene');
             if (escena.hasLoaded) {
                 animarNado();
             } else {
