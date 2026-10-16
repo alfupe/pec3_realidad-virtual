@@ -34,6 +34,7 @@
         <a-assets>
             <video id="videoSubmarino"
                    src="video360.mp4"
+                   autoplay
                    loop="true"
                    muted="true"
                    playsinline
@@ -73,13 +74,32 @@
         var video = document.getElementById('videoSubmarino');
         var btn = document.getElementById('btnControl');
 
+        // Sincronizar el texto del botón según el estado real de reproducción
+        video.addEventListener('play', function () {
+            btn.textContent = 'Pausar vídeo';
+        });
+
+        video.addEventListener('pause', function () {
+            btn.textContent = 'Reproducir vídeo';
+        });
+
+        // Intentar reproducción automática (autoplay) con captura de bloqueo de navegador
+        var playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.then(function () {
+                btn.textContent = 'Pausar vídeo';
+            }).catch(function () {
+                // Si la política del navegador bloquea el autoplay sin interacción previa,
+                // el botón queda disponible para que el usuario inicie el vídeo con un clic.
+                btn.textContent = 'Reproducir vídeo';
+            });
+        }
+
         btn.addEventListener('click', function () {
             if (video.paused) {
                 video.play();
-                btn.textContent = 'Pausar vídeo';
             } else {
                 video.pause();
-                btn.textContent = 'Reproducir vídeo';
             }
         });
 
