@@ -117,6 +117,7 @@
                         <li>Estructuración jerárquica y redacción técnica de la documentación del proyecto (<code>README.md</code>) para el repositorio.</li>
                         <li>Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.</li>
                         <li>Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).</li>
+                        <li>Auditoría técnica de compatibilidad cross-browser y estándares WebXR / WebGL 2.0, identificando restricciones de permisos en <code>&lt;iframe&gt;</code> (acceso a giroscopios/acelerómetros en móviles y políticas de autoplay de vídeo) y formulando las directivas necesarias para garantizar una experiencia uniforme en navegadores de escritorio y móviles.</li>
                     </ul>
                 </li>
                 <li class="instructions__item">
@@ -127,15 +128,16 @@
                         <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Genera un código QR ligero en PNG que enlace a https://alfupe.github.io/pec3_realidad-virtual/ para integrarlo en la interfaz.»</span>
                         <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Ayúdame a calcular la velocidad y rotación de un modelo 3D en A-Frame para que patrulle entre -1.7 y 1.7 en X y gire fluidamente 180º al llegar a los extremos sin saltos bruscos.»</span>
                         <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»</span>
+                        <span class="instructions__note" style="border-left: 3px solid #2b6cb0; padding-left: 8px; font-style: italic;">«Revisa si tenemos alguna preocupación de compatibilidad cross-browser o versiones mínimas de navegador en WebXR/A-Frame, y qué directivas de permisos debemos configurar en los iframes para que el giroscopio y el vídeo funcionen sin bloqueos en móviles.»</span>
                     </div>
                 </li>
                 <li class="instructions__item">
                     <strong>Respuestas obtenidas:</strong>
-                    <span class="instructions__note">La herramienta facilitó enlaces y descriptores de búsqueda en Wikimedia Commons para localizar recursos equirrectangulares libres, aportó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con cálculos de coordenadas y eventos (<code>mouseenter</code>, <code>mouseleave</code>) para la interacción en A-Frame.</span>
+                    <span class="instructions__note">La herramienta facilitó enlaces y descriptores de búsqueda en Wikimedia Commons para localizar recursos equirrectangulares libres, aportó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR, sugirió fragmentos de código con cálculos de coordenadas y eventos (<code>mouseenter</code>, <code>mouseleave</code>) para A-Frame, y proporcionó las directivas de Permissions Policy necesarias para los <code>&lt;iframe&gt;</code> (sensores de orientación y reproducción automática).</span>
                 </li>
                 <li class="instructions__item">
                     <strong>Proceso de revisión, reelaboración y edición:</strong>
-                    <span class="instructions__note">El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la selección final de los recursos multimedia y la comprobación directa de sus licencias originales, su recorte y transcodificación a formatos web óptimos (MP4 H.264 y JPG), la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (&lt; 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.</span>
+                    <span class="instructions__note">El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la selección final de los recursos multimedia y la comprobación directa de sus licencias originales, su recorte y transcodificación a formatos web óptimos (MP4 H.264 y JPG), la optimización manual de geometrías y texturas 3D, el diseño de la interfaz web, la comprobación empírica de compatibilidad en dispositivos y navegadores reales (escritorio y móvil) y la verificación del correcto funcionamiento en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.</span>
                 </li>
             </ul>
         </section>

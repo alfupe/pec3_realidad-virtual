@@ -100,6 +100,7 @@ Asistente de Inteligencia Artificial (Gemini / Antigravity).
 * Estructuración jerárquica y redacción técnica de la documentación del proyecto (`README.md`) para el repositorio.
 * Generación mediante script del código QR optimizado para facilitar el acceso directo a la versión desplegada en GitHub Pages desde dispositivos móviles.
 * Asistencia en la lógica matemática y de temporización para el suavizado de animaciones e interacción en A-Frame (cálculo de límites de patrullaje, rotación continua de 180º en extremos y velocidad de alejamiento y retorno de los modelos 3D ante eventos del cursor).
+* Auditoría técnica de compatibilidad cross-browser y estándares WebXR / WebGL 2.0, identificando restricciones de permisos en `<iframe>` (acceso a giroscopios/acelerómetros en móviles y políticas de autoplay de vídeo) y formulando las directivas necesarias para garantizar una experiencia uniforme en navegadores de escritorio y móviles.
 
 ### Instrucciones o prompts representativos
 > «Ayúdame a buscar en Wikimedia Commons fotos panorámicas y vídeos submarinos 360º en proyección equirrectangular con licencias abiertas para usar en A-Frame.»
@@ -112,10 +113,13 @@ Asistente de Inteligencia Artificial (Gemini / Antigravity).
 
 > «Configura la interacción para que al enfocar la mantarraya con el cursor se aleje suavemente en el eje Z hacia el fondo marino y regrese al retirar la mirada.»
 
+> «Revisa si tenemos alguna preocupación de compatibilidad cross-browser o versiones mínimas de navegador en WebXR/A-Frame, y qué directivas de permisos debemos configurar en los iframes para que el giroscopio y el vídeo funcionen sin bloqueos en móviles.»
+
 ### Respuestas obtenidas
-La herramienta facilitó enlaces y descriptores de búsqueda en Wikimedia Commons para localizar recursos equirrectangulares libres, aportó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR y sugirió fragmentos de código con cálculos de coordenadas y eventos (`mouseenter`, `mouseleave`) para la interacción en A-Frame.
+La herramienta facilitó enlaces y descriptores de búsqueda en Wikimedia Commons para localizar recursos equirrectangulares libres, aportó propuestas de redacción estructurada para la documentación y los créditos, generó el recurso gráfico QR, sugirió fragmentos de código con cálculos de coordenadas y eventos (`mouseenter`, `mouseleave`) para A-Frame, y proporcionó las directivas de Permissions Policy necesarias para los `<iframe>` (sensores de orientación y reproducción automática).
 
 ### Proceso de revisión, reelaboración y edición
-El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la selección final de los recursos multimedia y la comprobación directa de sus licencias originales, su recorte y transcodificación a formatos web óptimos (MP4 H.264 y JPG), la optimización manual de geometrías y texturas 3D para cumplir de forma estricta la restricción de peso (< 10 MB), el diseño de la interfaz web y la verificación del correcto funcionamiento en el visor web y en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.
+El uso de la herramienta ha sido estrictamente instrumental, consultivo y de soporte técnico/editorial. La delimitación temática del entorno submarino, la selección final de los recursos multimedia y la comprobación directa de sus licencias originales, su recorte y transcodificación a formatos web óptimos (MP4 H.264 y JPG), la optimización manual de geometrías y texturas 3D, el diseño de la interfaz web, la comprobación empírica de compatibilidad en dispositivos y navegadores reales (escritorio y móvil) y la verificación del correcto funcionamiento en GitHub Pages han sido realizados, evaluados y validados íntegramente por el estudiante.
+
 
 
