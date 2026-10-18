@@ -43,9 +43,9 @@ El proyecto utiliza **A-Frame 1.8.0** sobre **WebGL 2.0 / WebXR** y componentes 
 * **Meta Quest Browser:** Compatible de forma nativa para experiencia inmersiva completa en visor VR standalone.
 
 ### Consideraciones técnicas y Cross-Browser
-1. **Contexto Seguro (HTTPS / Localhost):**  
-   Las APIs de WebXR y el acceso a los sensores de orientación y movimiento del dispositivo (*DeviceOrientation / Gyroscope*) exigen imperativamente un **entorno seguro (HTTPS)**. Por ello, el acceso recomendado es a través del despliegue en **GitHub Pages**.  
-   *Nota para pruebas en local:* Debido a las políticas de seguridad CORS del navegador para modelos `.glb` y texturas, si se ejecuta en local debe abrirse mediante un servidor web local (por ejemplo `python3 -m http.server 8080` o la extensión *Live Server* de VS Code), y no directamente haciendo doble clic con protocolo `file:///`.
+1. **Protocolo y ejecución en local vs. entorno seguro (HTTPS / Localhost):**  
+   Tal como se indicó en las pautas de la asignatura sobre los protocolos en A-Frame, si se intenta abrir el archivo `index.html` haciendo doble clic directamente desde el explorador de archivos, el navegador utilizará el protocolo `file://`, impidiendo la correcta carga de los modelos 3D (`.glb`), texturas y vídeos debido a las restricciones de seguridad del navegador.  
+   Para probar el proyecto en local es imprescindible abrirlo bajo el protocolo `http://` arrancando un servidor web local, siendo la forma más sencilla y recomendada usar la extensión **Live Server de Visual Studio Code**. Asimismo, para el uso de la API WebXR y los sensores móviles de orientación/giroscopio en dispositivos reales, se requiere una conexión segura (**HTTPS**), requisito que cubre el despliegue público en **GitHub Pages**.
 
 2. **Permisos de sensores en `<iframe>` (Móvil / Giroscopio):**  
    Para garantizar que la vista panorámica responda a los giroscopios y acelerómetros móviles desde dentro del marco `<iframe>`, las etiquetas incorporan la política de permisos explícita:  
