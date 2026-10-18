@@ -8,22 +8,17 @@
 </head>
 <body>
     <a-scene>
-        <!-- Declaración de recursos -->
         <a-assets>
             <img id="arrecife" src="arrecife360.jpg">
-            <!-- Modelo 3D importado según paso 5 del tutorial -->
             <a-asset-item id="modeloPez" src="pez.glb"></a-asset-item>
         </a-assets>
 
-        <!-- Fondo esférico de 360 grados con imagen fija -->
         <a-sky id="fondo-360" src="#arrecife" rotation="0 -70 0" radius="10"></a-sky>
 
-        <!-- Luz ambiental para que el modelo 3D se aprecie correctamente -->
         <a-light type="ambient" color="#ffffff" intensity="0.9"></a-light>
         <a-light type="directional" position="1 4 -2" intensity="0.5"></a-light>
 
-        <!-- Modelo 3D externo: Pez mariposa nadando en el arrecife -->
-        <!-- Patrulla horizontal cercana al usuario con giro fluido de 180º al llegar a los extremos -->
+        <!-- Modelo 3D: Pez mariposa -->
         <a-entity id="contenedor-pez" position="0 1.1 -1.8">
             <a-entity id="pez-arrecife"
                       gltf-model="#modeloPez"
@@ -34,13 +29,12 @@
         </a-entity>
 
         <script>
-            // Lógica de nado continuo, giro de 180º en extremos y reacción de huida al cursor
             const contenedor = document.querySelector('#contenedor-pez');
             const pez = document.querySelector('#pez-arrecife');
 
-            const posZ = -1.8; // Colocado más cerca para apreciar los detalles del modelo
+            const posZ = -1.8;
             const posY = 1.1;
-            const limiteX = 1.7; // Límites del recorrido horizontal
+            const limiteX = 1.7;
             const velocidadNormal = 0.007;
 
             let posX = 0;
@@ -50,7 +44,6 @@
 
             const iniciarGiro = (anguloDestino, nuevaDireccion) => {
                 girando = true;
-                // Rotación suave de 180º sobre el pivote del pez
                 pez.setAttribute('animation__giro', {
                     property: 'rotation',
                     to: `0 ${anguloDestino} 0`,
@@ -68,12 +61,9 @@
                 if (!girando) {
                     posX += direccion * velocidad;
 
-                    // Al llegar al extremo derecho, gira 180º para volver hacia la izquierda
                     if (direccion === 1 && posX >= limiteX) {
                         iniciarGiro(-90, -1);
-                    }
-                    // Al llegar al extremo izquierdo, gira 180º para volver hacia la derecha
-                    else if (direccion === -1 && posX <= -limiteX) {
+                    } else if (direccion === -1 && posX <= -limiteX) {
                         iniciarGiro(90, 1);
                     } else {
                         contenedor.setAttribute('position', `${posX} ${posY} ${posZ}`);
@@ -82,19 +72,17 @@
                 requestAnimationFrame(animarNado);
             };
 
-            // Al pasar el cursor por encima (mouseenter), el pez se asusta y acelera desde su posición actual
+            // Interacción: aceleración momentánea al enfocar con el cursor
             pez.addEventListener('mouseenter', () => {
                 velocidad = velocidadNormal * 3.5;
             });
 
-            // Al salir del cursor (mouseleave), recupera gradualmente su velocidad normal de nado
             pez.addEventListener('mouseleave', () => {
                 setTimeout(() => {
                     velocidad = velocidadNormal;
                 }, 800);
             });
 
-            // Iniciar cuando la escena esté cargada
             const escena = document.querySelector('a-scene');
             if (escena.hasLoaded) {
                 animarNado();

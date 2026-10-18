@@ -6,7 +6,6 @@
     <meta name="description" content="PEC 3: Escena 2 con vídeo 360 y control de reproducción">
     <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
     <style>
-        /* Botón discreto en la esquina inferior izquierda */
         #btnControl {
             position: fixed;
             bottom: 20px;
@@ -30,7 +29,6 @@
     <button id="btnControl">Reproducir / Pausar</button>
 
     <a-scene>
-        <!-- Declaración de recursos en assets -->
         <a-assets>
             <video id="videoSubmarino"
                    src="video360.mp4"
@@ -40,19 +38,15 @@
                    playsinline
                    webkit-playsinline>
             </video>
-            <!-- Modelo 3D de mantarraya importado para enriquecer la Escena 2 -->
             <a-asset-item id="modeloManta" src="mantaraya.glb"></a-asset-item>
         </a-assets>
 
-        <!-- Fondo esférico para el vídeo 360 -->
         <a-videosphere src="#videoSubmarino" rotation="0 -90 0"></a-videosphere>
 
-        <!-- Luces ambientales y direccionales para el modelo 3D -->
         <a-light type="ambient" color="#ffffff" intensity="0.9"></a-light>
         <a-light type="directional" position="1 4 -2" intensity="0.6"></a-light>
 
-        <!-- Modelo 3D externo: Mantarraya planeando en la corriente submarina -->
-        <!-- Al mirarla con el cursor (mouseenter), se asusta y se aleja hacia las profundidades (eje Z) -->
+        <!-- Modelo 3D: Mantarraya -->
         <a-entity id="contenedor-manta" position="0 0 -2.2">
             <a-entity id="mantarraya-submarina"
                       gltf-model="#modeloManta"
@@ -63,18 +57,15 @@
             </a-entity>
         </a-entity>
 
-        <!-- Cámara con cursor para interactuar con los objetos de la escena -->
         <a-camera>
             <a-cursor color="#ffffff"></a-cursor>
         </a-camera>
     </a-scene>
 
     <script>
-        // Control de reproducción y pausa del vídeo 360
         const video = document.querySelector('#videoSubmarino');
         const btn = document.querySelector('#btnControl');
 
-        // Sincronizar el texto del botón según el estado real de reproducción
         video.addEventListener('play', () => {
             btn.textContent = 'Pausar vídeo';
         });
@@ -83,14 +74,11 @@
             btn.textContent = 'Reproducir vídeo';
         });
 
-        // Intentar reproducción automática (autoplay) con captura de bloqueo de navegador
         const playPromise = video.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
                 btn.textContent = 'Pausar vídeo';
             }).catch(() => {
-                // Si la política del navegador bloquea el autoplay sin interacción previa,
-                // el botón queda disponible para que el usuario inicie el vídeo con un clic.
                 btn.textContent = 'Reproducir vídeo';
             });
         }
@@ -103,7 +91,7 @@
             }
         });
 
-        // Interacción: al pasar el cursor (mouseenter), la mantarraya se asusta y se aleja en el eje Z
+        // Interacción: alejamiento en Z al enfocar con el cursor
         const contenedorManta = document.querySelector('#contenedor-manta');
         const manta = document.querySelector('#mantarraya-submarina');
 
