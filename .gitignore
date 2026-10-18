@@ -17,10 +17,11 @@ Icon
 # Reference repository
 Tutorial_A-Frame_360-master/
 
-# Zip / Delivery files (no trackear entregas comprimidas dentro del repo)
+# Zip / Delivery files (no trackear entregas comprimidas ni ficheros de entrega en el repo)
 *.zip
 *.tar.gz
-PEC3_*.zip
+*.txt
+PEC3_*
 PEC3_Fuentes_Alejandro/
 
 # Logs
