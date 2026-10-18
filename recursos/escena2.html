@@ -63,57 +63,59 @@
     </a-scene>
 
     <script>
-        const video = document.querySelector('#videoSubmarino');
-        const btn = document.querySelector('#btnControl');
+        const iniciarControlVideo = () => {
+            const video = document.querySelector('#videoSubmarino');
+            const btn = document.querySelector('#btnControl');
 
-        video.addEventListener('play', () => {
-            btn.textContent = 'Pausar vídeo';
-        });
+            const actualizarBoton = () => {
+                btn.textContent = video.paused ? 'Reproducir vídeo' : 'Pausar vídeo';
+            };
 
-        video.addEventListener('pause', () => {
-            btn.textContent = 'Reproducir vídeo';
-        });
+            video.addEventListener('play', actualizarBoton);
+            video.addEventListener('pause', actualizarBoton);
 
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                btn.textContent = 'Pausar vídeo';
-            }).catch(() => {
-                btn.textContent = 'Reproducir vídeo';
+            btn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
             });
-        }
 
-        btn.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-
-        // Interacción: alejamiento en Z al enfocar con el cursor
-        const contenedorManta = document.querySelector('#contenedor-manta');
-        const manta = document.querySelector('#mantarraya-submarina');
-
-        manta.addEventListener('mouseenter', () => {
-            contenedorManta.setAttribute('animation__huida', {
-                property: 'position',
-                to: '0 0.3 -6.0',
-                dur: 1000,
-                easing: 'easeOutQuad'
-            });
-        });
-
-        manta.addEventListener('mouseleave', () => {
-            setTimeout(() => {
-                contenedorManta.setAttribute('animation__huida', {
-                    property: 'position',
-                    to: '0 0 -2.2',
-                    dur: 1800,
-                    easing: 'easeInOutQuad'
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    actualizarBoton();
                 });
-            }, 600);
-        });
+            }
+        };
+
+        const iniciarInteraccionManta = () => {
+            const contenedorManta = document.querySelector('#contenedor-manta');
+            const manta = document.querySelector('#mantarraya-submarina');
+
+            const moverEnProfundidad = (posicionZ, duracion, retardo = 0) => {
+                setTimeout(() => {
+                    contenedorManta.setAttribute('animation__huida', {
+                        property: 'position',
+                        to: posicionZ,
+                        dur: duracion,
+                        easing: 'easeInOutQuad'
+                    });
+                }, retardo);
+            };
+
+            manta.addEventListener('mouseenter', () => {
+                moverEnProfundidad('0 0.3 -6.0', 1000);
+            });
+
+            manta.addEventListener('mouseleave', () => {
+                moverEnProfundidad('0 0 -2.2', 1800, 600);
+            });
+        };
+
+        iniciarControlVideo();
+        iniciarInteraccionManta();
     </script>
 </body>
 </html>

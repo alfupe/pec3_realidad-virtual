@@ -32,62 +32,73 @@
             const contenedor = document.querySelector('#contenedor-pez');
             const pez = document.querySelector('#pez-arrecife');
 
-            const posZ = -1.8;
-            const posY = 1.1;
-            const limiteX = 1.7;
-            const velocidadNormal = 0.007;
+            const velocidadBase = 0.007;
+            let velocidadActual = velocidadBase;
 
-            let posX = 0;
-            let direccion = 1; // 1 = derecha, -1 = izquierda
-            let velocidad = velocidadNormal;
-            let girando = false;
+            const iniciarPatrullaPez = (elemContenedor, elemPez) => {
+                const limiteX = 1.7;
+                const posY = 1.1;
+                const posZ = -1.8;
 
-            const iniciarGiro = (anguloDestino, nuevaDireccion) => {
-                girando = true;
-                pez.setAttribute('animation__giro', {
-                    property: 'rotation',
-                    to: `0 ${anguloDestino} 0`,
-                    dur: 700,
-                    easing: 'easeInOutQuad'
+                let posX = 0;
+                let direccion = 1;
+                let girando = false;
+
+                const girarPez = (anguloDestino, nuevaDireccion) => {
+                    girando = true;
+                    elemPez.setAttribute('animation__giro', {
+                        property: 'rotation',
+                        to: `0 ${anguloDestino} 0`,
+                        dur: 700,
+                        easing: 'easeInOutQuad'
+                    });
+
+                    setTimeout(() => {
+                        direccion = nuevaDireccion;
+                        girando = false;
+                    }, 750);
+                };
+
+                const actualizarMovimiento = () => {
+                    if (!girando) {
+                        posX += direccion * velocidadActual;
+
+                        if (direccion === 1 && posX >= limiteX) {
+                            girarPez(-90, -1);
+                        } else if (direccion === -1 && posX <= -limiteX) {
+                            girarPez(90, 1);
+                        } else {
+                            elemContenedor.setAttribute('position', `${posX} ${posY} ${posZ}`);
+                        }
+                    }
+                    requestAnimationFrame(actualizarMovimiento);
+                };
+
+                actualizarMovimiento();
+            };
+
+            const iniciarInteraccionPez = (elemPez) => {
+                elemPez.addEventListener('mouseenter', () => {
+                    velocidadActual = velocidadBase * 3.5;
                 });
 
-                setTimeout(() => {
-                    direccion = nuevaDireccion;
-                    girando = false;
-                }, 750);
+                elemPez.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        velocidadActual = velocidadBase;
+                    }, 800);
+                });
             };
-
-            const animarNado = () => {
-                if (!girando) {
-                    posX += direccion * velocidad;
-
-                    if (direccion === 1 && posX >= limiteX) {
-                        iniciarGiro(-90, -1);
-                    } else if (direccion === -1 && posX <= -limiteX) {
-                        iniciarGiro(90, 1);
-                    } else {
-                        contenedor.setAttribute('position', `${posX} ${posY} ${posZ}`);
-                    }
-                }
-                requestAnimationFrame(animarNado);
-            };
-
-            // Interacción: aceleración momentánea al enfocar con el cursor
-            pez.addEventListener('mouseenter', () => {
-                velocidad = velocidadNormal * 3.5;
-            });
-
-            pez.addEventListener('mouseleave', () => {
-                setTimeout(() => {
-                    velocidad = velocidadNormal;
-                }, 800);
-            });
 
             const escena = document.querySelector('a-scene');
+            const arrancarEscena = () => {
+                iniciarPatrullaPez(contenedor, pez);
+                iniciarInteraccionPez(pez);
+            };
+
             if (escena.hasLoaded) {
-                animarNado();
+                arrancarEscena();
             } else {
-                escena.addEventListener('loaded', animarNado);
+                escena.addEventListener('loaded', arrancarEscena);
             }
         </script>
 
